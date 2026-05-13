@@ -2,7 +2,6 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import dynamic from "next/dynamic"
 import { useRouter } from "next/navigation"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
@@ -12,12 +11,9 @@ import {
   BotIcon,
   BrainCircuitIcon,
   CheckCircle2Icon,
-  LogIn,
   MessageSquareTextIcon,
-  MoonIcon,
   ShieldCheckIcon,
   SparklesIcon,
-  SunIcon,
   WorkflowIcon,
 } from "lucide-react"
 
@@ -26,14 +22,7 @@ import SignInDialog from "@/modules/auth/ui/components/sign-in-dialog"
 import { useSession } from "@/lib/auth-client"
 import { cn } from "@/lib/utils"
 
-const Sidebar = dynamic(() => import("./sidebar").then((m) => m.Sidebar), { ssr: false })
-
-const navItems = [
-  { label: "Product", href: "#product" },
-  { label: "Workflow", href: "#workflow" },
-  { label: "Pricing", href: "/dashboard/upgrade" },
-  { label: "FAQ", href: "#faq" },
-]
+import { Navbar } from "./navbar"
 
 const features = [
   {
@@ -91,44 +80,7 @@ export const HomeView = () => {
     <>
       <SignInDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} />
       <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
-        <header className="fixed inset-x-0 top-0 z-50 bg-background/82 backdrop-blur-xl py-2 lg:py-4">
-          <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-            <Link href="/" className="flex items-center gap-3">
-              <Image src="/logo.svg" height={34} width={34} alt="Mono" priority className="dark:invert" style={{ width: 34, height: 34 }} />
-              <span className="text-lg font-semibold tracking-tight">Mono</span>
-            </Link>
-
-            <nav className="hidden items-center gap-1 rounded-full border bg-card/70 p-1 text-sm md:flex">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="rounded-full px-4 py-2 text-muted-foreground transition hover:bg-muted hover:text-foreground"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-
-            <div className="flex items-center gap-2">
-              <Button onClick={goToApp} className="hidden rounded-full px-5 sm:inline-flex">
-                <LogIn /> Start free
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="hidden rounded-full md:inline-flex"
-                aria-label="Toggle theme"
-              >
-                {theme === "dark" ? <SunIcon className="text-foreground" /> : <MoonIcon className="text-muted-foreground" />}
-              </Button>
-              <div className="md:hidden">
-                <Sidebar />
-              </div>
-            </div>
-          </div>
-        </header>
+        <Navbar />
 
         <main className="pt-16">
           <section id="product" className="mx-auto grid min-h-[calc(100vh-4rem)] max-w-7xl items-center gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8">
