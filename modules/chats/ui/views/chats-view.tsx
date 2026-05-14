@@ -25,7 +25,7 @@ export const ChatsView = () => {
     )
 
     return (
-        <div className="flex flex-1 flex-col gap-y-4 px-4 pb-24 md:px-8">
+        <div className="flex flex-1 flex-col bg-card/60 gap-y-4 px-4 pb-24 md:px-8">
             <DataTable
                 data={data.items}
                 columns={columns}

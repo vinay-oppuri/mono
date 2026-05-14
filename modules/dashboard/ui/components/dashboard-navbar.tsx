@@ -31,13 +31,13 @@ export const DashboardNavbar = () => {
     <>
       <DashboardCommand open={commandOpen} setOpen={setCommandOpen} />
 
-      <nav className="sticky top-0 z-40 flex h-16 items-center justify-between border-b bg-background/86 px-4 backdrop-blur-xl md:px-6">
+      <nav className="sticky top-0 z-40 flex h-16 items-center justify-between bg-sidebar border-b dark:border-none px-4 backdrop-blur-sm md:px-6">
 
         {/* LEFT SECTION */}
         <div className="flex items-center gap-3">
           {/* Desktop: Search bar + Menu button */}
           <Button
-            className="hidden md:flex"
+            className="hidden md:flex bg-muted/40! border-foreground/5!"
             variant="outline"
             size="icon"
             onClick={toggleSidebar}
@@ -49,12 +49,9 @@ export const DashboardNavbar = () => {
             onClick={() => setCommandOpen((open) => !open)}
             variant="outline"
             size="sm"
-            className="hidden h-9 w-72 justify-start rounded-full bg-muted/45 text-muted-foreground md:flex"
+            className="hidden h-9 w-72 justify-start rounded-full bg-muted/40! border-foreground/5! text-muted-foreground md:flex"
           >
             <SearchIcon className="mr-2" size="16" /> Search
-            <kbd className="ml-auto pointer-events-none inline-flex h-5 items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground">
-              <span className="text-xs">&#8984;</span>K
-            </kbd>
           </Button>
 
           {/* Mobile: Logo */}

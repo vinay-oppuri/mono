@@ -195,16 +195,14 @@ export const HomeView = () => {
             </motion.div>
           </section>
 
-          <section className="border-y bg-card/55">
-            <div className="mx-auto grid max-w-7xl gap-4 px-4 py-10 sm:px-6 md:grid-cols-3 lg:px-8">
-              {features.map((feature) => (
-                <div key={feature.title} className="rounded-lg border bg-background p-5">
-                  <feature.icon className="mb-4 size-5 text-primary" />
-                  <h2 className="mb-2 text-base font-semibold">{feature.title}</h2>
-                  <p className="text-sm leading-6 text-muted-foreground">{feature.desc}</p>
-                </div>
-              ))}
-            </div>
+          <section className="mx-auto grid max-w-7xl gap-4 px-4 py-10 sm:px-6 md:grid-cols-3 lg:px-8">
+            {features.map((feature) => (
+              <div key={feature.title} className="rounded-lg border bg-background p-5">
+                <feature.icon className="mb-4 size-5 text-primary" />
+                <h2 className="mb-2 text-base font-semibold">{feature.title}</h2>
+                <p className="text-sm leading-6 text-muted-foreground">{feature.desc}</p>
+              </div>
+            ))}
           </section>
 
           <section id="workflow" className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.85fr_1fr] lg:px-8">

@@ -59,19 +59,19 @@ export const AgentIdView = ({ agentId }: Props) => {
     return (
         <>
             <RemoveConfirmation />
-            <UpdateAgentDialog 
+            <UpdateAgentDialog
                 open={UpdateAgentDialogOpen}
                 onOpenChange={setUpdateAgentDialogOpen}
                 initialValues={data}
             />
-            <div className="flex-1 py-4 px-4 md:px-8 flex flex-col gap-y-4">
+            <div className="flex-1 py-4 px-4 md:px-8 flex flex-col bg-card/60 gap-y-4">
                 <AgentIdViewHeader
                     agentId={agentId}
                     agentName={data.name}
                     onEdit={() => setUpdateAgentDialogOpen(true)}
                     onRemove={handleRemoveAgent}
                 />
-                <div className="rounded-lg border bg-card shadow-sm">
+                <div className="rounded-lg border border-foreground/5! bg-card shadow-sm">
                     <div className="px-4 py-5 gap-y-5 flex flex-col col-span-5">
                         <div className="flex items-center gap-x-3">
                             <GeneratedAvatar

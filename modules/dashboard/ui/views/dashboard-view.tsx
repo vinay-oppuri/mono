@@ -34,8 +34,8 @@ export const DashboardView = memo(function DashboardView() {
     ], [totalAgents, agentLimit, totalChats, chatLimit, savedMessages])
 
     return (
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-6 pb-24 md:px-8 md:py-8">
-            <section className="rounded-lg border bg-card p-5 shadow-sm md:p-7">
+        <div className="bg-card/60 mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-6 pb-24 md:px-8 md:py-8">
+            <section className="rounded-lg border border-foreground/5 bg-card p-5 shadow-sm md:p-7">
                 <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
                     <div className="max-w-2xl">
                         <Badge variant="outline" className="mb-3 bg-muted/60">
@@ -55,7 +55,7 @@ export const DashboardView = memo(function DashboardView() {
                                 New chat
                             </Link>
                         </Button>
-                        <Button asChild variant="outline" className="rounded-full">
+                        <Button asChild variant="outline" className="rounded-full bg-muted/30! border-foreground/5!">
                             <Link href="/dashboard/agents">
                                 Manage agents
                                 <ArrowUpRightIcon />
@@ -67,7 +67,7 @@ export const DashboardView = memo(function DashboardView() {
 
             <section className="grid grid-cols-1 gap-4 md:grid-cols-3">
                 {stats.map(({ title, value, limit, icon: Icon, tone }) => (
-                    <Card key={title} className="border bg-card shadow-sm">
+                    <Card key={title} className="border border-foreground/5 bg-card shadow-sm">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
                             <CardTitle className="text-sm font-medium text-muted-foreground">{title}</CardTitle>
                             <Icon className={`size-5 ${tone}`} />
@@ -85,7 +85,7 @@ export const DashboardView = memo(function DashboardView() {
             </section>
 
             <section className="grid grid-cols-1 gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-                <Card className="border bg-card shadow-sm">
+                <Card className="border border-foreground/5 bg-card shadow-sm">
                     <CardHeader className="flex flex-row items-center justify-between">
                         <CardTitle>Recent chats</CardTitle>
                         <Button asChild variant="ghost" size="sm">
@@ -93,7 +93,7 @@ export const DashboardView = memo(function DashboardView() {
                         </Button>
                     </CardHeader>
                     <CardContent>
-                        <div className="divide-y rounded-md border">
+                        <div className="rounded-md border border-foreground/5">
                             {(chatsData?.items ?? []).slice(0, 4).map((chat) => (
                                 <Link
                                     key={chat.id}
@@ -116,7 +116,7 @@ export const DashboardView = memo(function DashboardView() {
                     </CardContent>
                 </Card>
 
-                <Card className="border bg-card shadow-sm">
+                <Card className="border border-foreground/5 bg-card shadow-sm">
                     <CardHeader className="flex flex-row items-center justify-between">
                         <CardTitle>Agents</CardTitle>
                         <Button asChild variant="ghost" size="sm">
@@ -128,7 +128,7 @@ export const DashboardView = memo(function DashboardView() {
                             <Link
                                 key={agent.id}
                                 href={`/dashboard/agents/${agent.id}`}
-                                className="flex items-center justify-between rounded-md border px-3 py-3 transition hover:bg-muted/60"
+                                className="flex items-center justify-between rounded-md border border-foreground/5 px-3 py-3 transition hover:bg-muted/60"
                             >
                                 <div className="flex min-w-0 items-center gap-3">
                                     <Avatar className="size-9">
@@ -140,7 +140,7 @@ export const DashboardView = memo(function DashboardView() {
                             </Link>
                         ))}
                         {agentsData?.items.length === 0 && (
-                            <p className="rounded-md border px-4 py-4 text-sm text-muted-foreground">
+                            <p className="rounded-md border border-foreground/5 px-4 py-4 text-sm text-muted-foreground">
                                 Create an agent to start chatting.
                             </p>
                         )}

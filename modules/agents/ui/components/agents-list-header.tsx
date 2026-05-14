@@ -24,8 +24,8 @@ export const AgentsListHeader = () => {
     return (
         <>
             <NewAgentDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} />
-            <div className="flex flex-col gap-4 px-4 py-6 md:px-8">
-                <div className="flex flex-col gap-3 rounded-lg border bg-card p-5 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col bg-card/60 gap-4 px-4 py-6 md:px-8">
+                <div className="flex flex-col gap-3 rounded-lg border border-foreground/5! bg-card p-5 shadow-sm sm:flex-row sm:items-center sm:justify-between">
                     <div>
                         <h5 className="text-2xl font-semibold tracking-tight">Agents</h5>
                         <p className="text-sm text-muted-foreground">Create focused assistants for recurring work.</p>

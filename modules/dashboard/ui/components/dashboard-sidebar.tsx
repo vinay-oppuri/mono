@@ -53,16 +53,14 @@ export const DashboardSidebar = () => {
   if (!mounted) return null
 
   return (
-    <Sidebar className="border-r bg-sidebar">
+    <Sidebar className="border-r dark:border-none">
       <SidebarHeader className="flex items-center px-4 py-5">
         <Link
           href="/"
-          className="flex items-center gap-3"
+          className="flex items-center gap-3 py-4 -ml-8"
           onClick={() => isMobile && setOpenMobile(false)}
         >
-          <div className="flex size-10 items-center justify-center rounded-lg border bg-background shadow-sm">
-            <Image src="/logo.svg" width={28} height={28} alt="Mono" className="dark:invert" />
-          </div>
+          <Image src="/logo.svg" width={28} height={28} alt="Mono" className="dark:invert" />
           <span className="text-xl font-semibold tracking-tight text-foreground">Mono</span>
         </Link>
       </SidebarHeader>

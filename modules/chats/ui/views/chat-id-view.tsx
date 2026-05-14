@@ -92,15 +92,15 @@ export const ChatIdView = ({ chatId }: Props) => {
                 onOpenChange={setUpdateChatDialogOpen}
                 initialValues={data}
             />
-            <div className="flex-1 py-4 px-4 md:px-8 flex flex-col gap-y-4 min-h-0">
+            <div className="flex-1 py-4 px-4 md:px-8 flex flex-col bg-card/60 gap-y-4 min-h-0">
                 <ChatIdViewHeader
                     chatId={chatId}
                     chatTitle={data.title}
                     onEdit={() => setUpdateChatDialogOpen(true)}
                     onRemove={handleRemoveChat}
                 />
-                <div className="flex-1 min-h-[calc(100vh-15rem)] rounded-lg border bg-background shadow-primary/30 shadow-sm flex flex-col overflow-hidden">
-                    <div className="border-b px-4 py-3 flex items-center gap-x-3">
+                <div className="flex-1 min-h-[calc(100vh-15rem)] rounded-lg border border-foreground/5 bg-background flex flex-col overflow-hidden">
+                    <div className="border-b border-foreground/5 px-4 py-3 flex items-center gap-x-3">
                         <GeneratedAvatar seed={data.agent.name} variant="botttsNeutral" className="size-9" />
                         <div className="min-w-0">
                             <h2 className="font-medium truncate">{data.agent.name}</h2>
@@ -143,8 +143,8 @@ export const ChatIdView = ({ chatId }: Props) => {
                                         className={cn(
                                             "max-w-[85%] md:max-w-[70%] rounded-lg px-4 py-3 text-sm leading-relaxed",
                                             isUser
-                                                ? "bg-primary text-primary-foreground"
-                                                : "bg-muted text-foreground"
+                                                ? "bg-primary/60 text-primary-foreground"
+                                                : "bg-muted/30 text-foreground"
                                         )}
                                     >
                                         <Markdown
@@ -175,12 +175,12 @@ export const ChatIdView = ({ chatId }: Props) => {
                         <div ref={bottomRef} />
                     </div>
 
-                    <form onSubmit={handleSubmit} className="border-t p-3 flex items-end gap-x-2">
+                    <form onSubmit={handleSubmit} className="border-t border-foreground/5 p-3 flex items-end gap-x-2">
                         <Textarea
                             value={message}
                             onChange={(event) => setMessage(event.target.value)}
                             placeholder={`Message ${data.agent.name}...`}
-                            className="min-h-11 max-h-40 resize-none"
+                            className="min-h-10 max-h-40 resize-none bg-muted/30! border-foreground/5!"
                             onKeyDown={(event) => {
                                 if (event.key === "Enter" && !event.shiftKey) {
                                     event.preventDefault()
@@ -188,7 +188,7 @@ export const ChatIdView = ({ chatId }: Props) => {
                                 }
                             }}
                         />
-                        <Button type="submit" size="icon" disabled={!message.trim() || sendMessage.isPending}>
+                        <Button type="submit" size="icon" disabled={!message.trim() || sendMessage.isPending} className="h-10! w-10!">
                             <SendIcon className="size-4" />
                         </Button>
                     </form>

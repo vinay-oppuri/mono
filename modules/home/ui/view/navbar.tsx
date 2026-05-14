@@ -50,7 +50,7 @@ export const Navbar = () => {
   return (
     <>
       <SignInDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} />
-      
+
       <header className="fixed inset-x-0 top-0 z-50 bg-background/80 backdrop-blur-sm px-2 py-2 lg:py-4">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link href="/" className="flex items-center gap-3">
@@ -85,9 +85,9 @@ export const Navbar = () => {
             </Button>
 
             <div className="md:hidden">
-              <Button 
-                variant="ghost" 
-                size="icon" 
+              <Button
+                variant="ghost"
+                size="icon"
                 className="rounded-full hover:bg-muted/50 transition-colors"
                 onClick={() => setIsOpen(!isOpen)}
               >
@@ -116,15 +116,15 @@ export const Navbar = () => {
                 onClick={() => goToApp()}
                 className="mt-4 flex w-full items-center gap-4 bg-primary px-4 py-4 text-sm font-medium text-background transition-all rounded-full shadow-inner"
               >
-                  <LogIn className="h-6 w-6" /> Start free
+                <LogIn className="h-6 w-6" /> Start free
               </Button>
             </div>
           </div>
         </div>
       )}
-      
+
       {isOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-30 bg-black/40 backdrop-blur-sm md:hidden"
           onClick={() => setIsOpen(false)}
         />
