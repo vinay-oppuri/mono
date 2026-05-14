@@ -5,7 +5,7 @@ import { TRPCError } from "@trpc/server"
 import { db } from "@/db"
 import { agents, chatMessages, chats } from "@/db/schema"
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, MAX_PAGE_SIZE, MIN_PAGE_SIZE } from "@/constants"
-import { createTRPCRouter, premiumProcedure, protectedProcedure } from "@/trpc/init"
+import { createTRPCRouter, protectedProcedure } from "@/trpc/init"
 import { GeminiRequestError, generateAgentReply } from "@/lib/gemini"
 import { chatsInsertSchema, chatsUpdateSchema, sendMessageSchema } from "../schemas"
 
@@ -93,7 +93,7 @@ export const chatsRouter = createTRPCRouter({
             }
         }),
 
-    create: premiumProcedure("chats")
+    create: protectedProcedure
         .input(chatsInsertSchema)
         .mutation(async ({ input, ctx }) => {
             const [existingAgent] = await db

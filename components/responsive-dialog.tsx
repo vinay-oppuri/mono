@@ -1,5 +1,6 @@
 "use client"
 
+import * as React from "react"
 import { useIsMobile } from "@/hooks/use-mobile"
 import { cn } from "@/lib/utils"
 
@@ -37,6 +38,13 @@ export const ResponsiveDialog = ({
   className
 }: ResponsiveDialogProps) => {
   const isMobile = useIsMobile()
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
 
   if (isMobile) {
     return (

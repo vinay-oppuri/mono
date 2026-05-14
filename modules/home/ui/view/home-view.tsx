@@ -1,10 +1,5 @@
-"use client"
-
 import Image from "next/image"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
 import {
   ArrowRightIcon,
   BotIcon,
@@ -17,11 +12,10 @@ import {
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import SignInDialog from "@/modules/auth/ui/components/sign-in-dialog"
-import { useSession } from "@/lib/auth-client"
 import { cn } from "@/lib/utils"
-
 import { Navbar } from "./navbar"
+import { Footer } from "./footer"
+import { HeroCTA } from "../components/hero-cta"
 
 const features = [
   {
@@ -54,40 +48,14 @@ const faq = [
 ]
 
 export const HomeView = () => {
-  const [mounted, setMounted] = useState(false)
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
-  const { data: session } = useSession()
-  const router = useRouter()
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) return null
-
-  const goToApp = () => {
-    if (session) {
-      router.push("/dashboard")
-      return
-    }
-
-    setIsDialogOpen(true)
-  }
-
   return (
     <>
-      <SignInDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} />
       <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
         <Navbar />
 
         <main className="pt-16">
           <section id="product" className="mx-auto grid min-h-[calc(100vh-4rem)] max-w-7xl items-center gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45 }}
-              className="max-w-2xl space-y-7"
-            >
+            <div className="max-w-2xl space-y-7">
               <div className="inline-flex items-center gap-2 rounded-full border bg-card px-3 py-1.5 text-sm text-muted-foreground shadow-sm">
                 <SparklesIcon className="size-4 text-primary" />
                 AI agents for repeatable work
@@ -101,10 +69,7 @@ export const HomeView = () => {
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
-                <Button onClick={goToApp} size="lg" className="rounded-full px-6">
-                  Create an agent
-                  <ArrowRightIcon />
-                </Button>
+                <HeroCTA />
                 <Button asChild size="lg" variant="outline" className="rounded-full px-6">
                   <Link href="#workflow">See workflow</Link>
                 </Button>
@@ -117,14 +82,9 @@ export const HomeView = () => {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.08 }}
-              className="relative"
-            >
+            <div className="relative">
               <div className="overflow-hidden rounded-lg border bg-card shadow-2xl shadow-primary/10">
                 <div className="flex items-center justify-between border-b px-4 py-3">
                   <div className="flex items-center gap-2">
@@ -192,7 +152,7 @@ export const HomeView = () => {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </section>
 
           <section className="mx-auto grid max-w-7xl gap-4 px-4 py-10 sm:px-6 md:grid-cols-3 lg:px-8">
@@ -237,6 +197,7 @@ export const HomeView = () => {
             </div>
           </section>
         </main>
+        <Footer />
       </div>
     </>
   )

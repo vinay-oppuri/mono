@@ -12,8 +12,33 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Mono",
-  description: "Create custom AI agents and chat with them",
+  metadataBase: new URL('https://mono.vinayweb.in'),
+  title: {
+    default: "Mono | Focused AI Agents",
+    template: "%s | Mono"
+  },
+  description: "Build a bench of AI agents that remember the work. The minimalist workspace for focused operations.",
+  keywords: ["AI agents", "productivity", "minimalist workspace", "automation"],
+  authors: [{ name: "Mono Team" }],
+  icons: {
+    icon: "/logo.svg",
+    apple: "/logo.svg",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://mono.vinayweb.in",
+    siteName: "Mono",
+    title: "Mono | Focused AI Agents",
+    description: "Build a bench of AI agents that remember the work.",
+    images: [{ url: "/logo.svg" }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mono | Focused AI Agents",
+    description: "Build a bench of AI agents that remember the work.",
+    images: ["/logo.svg"]
+  }
 };
 
 export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {

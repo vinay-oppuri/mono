@@ -55,7 +55,6 @@ export const ChatIdView = ({ chatId }: Props) => {
         trpc.chats.remove.mutationOptions({
             onSuccess: async () => {
                 await queryClient.invalidateQueries(trpc.chats.getMany.queryOptions({}))
-                await queryClient.invalidateQueries(trpc.premium.getFreeUsage.queryOptions())
                 router.push("/dashboard/chats")
             },
             onError: (error) => {

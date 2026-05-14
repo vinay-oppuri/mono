@@ -51,14 +51,10 @@ export const ChatForm = ({ onSuccess, onCancel, initialValues }: ChatFormProps) 
         trpc.chats.create.mutationOptions({
             onSuccess: async (createdChat) => {
                 await queryClient.invalidateQueries(trpc.chats.getMany.queryOptions({}))
-                await queryClient.invalidateQueries(trpc.premium.getFreeUsage.queryOptions())
                 onSuccess?.(createdChat.id)
             },
             onError: (error) => {
                 toast.error(error.message)
-                if (error.data?.code === "FORBIDDEN") {
-                    router.push("/dashboard/upgrade")
-                }
             }
         })
     )

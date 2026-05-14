@@ -14,7 +14,6 @@ import { useSession } from "@/lib/auth-client"
 const navItems = [
   { label: "Product", href: "#product" },
   { label: "What We Offer", href: "#product" },
-  { label: "Pricing", href: "/dashboard/upgrade" },
   { label: "FAQ", href: "#faq" },
 ]
 
@@ -24,13 +23,11 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const { data: session } = useSession()
-  const router = useRouter()
 
   useEffect(() => {
     setMounted(true)
   }, [])
-
-  if (!mounted) return null
+  const router = useRouter()
 
   const goToApp = () => {
     setIsOpen(false)
@@ -38,7 +35,6 @@ export const Navbar = () => {
       router.push("/dashboard")
       return
     }
-
     setIsDialogOpen(true)
   }
 
@@ -74,14 +70,22 @@ export const Navbar = () => {
             <Button onClick={goToApp} className="hidden rounded-full px-5 sm:inline-flex">
               <LogIn /> Start free
             </Button>
+            {/* suppressHydrationWarning prevents mismatch from theme-dependent icon */}
             <Button
+              suppressHydrationWarning
               variant="ghost"
               size="icon"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className="hidden rounded-full md:inline-flex"
               aria-label="Toggle theme"
             >
-              {theme === "dark" ? <SunIcon className="text-foreground" /> : <MoonIcon className="text-muted-foreground" />}
+              {!mounted ? (
+                <div className="size-5" />
+              ) : theme === "dark" ? (
+                <SunIcon className="text-foreground" />
+              ) : (
+                <MoonIcon className="text-muted-foreground" />
+              )}
             </Button>
 
             <div className="md:hidden">

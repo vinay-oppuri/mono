@@ -10,6 +10,8 @@ import { DashboardCommand } from "./dashboard-command"
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { DashboardBreadcrumbs } from "./dashboard-breadcrumbs"
+import { DashboardUserButton } from "./dashboard-user-button"
 
 export const DashboardNavbar = () => {
   const { toggleSidebar } = useSidebar()
@@ -32,61 +34,72 @@ export const DashboardNavbar = () => {
       <DashboardCommand open={commandOpen} setOpen={setCommandOpen} />
 
       <nav className="sticky top-0 z-40 flex h-16 items-center justify-between bg-sidebar border-b dark:border-none px-4 backdrop-blur-sm md:px-6">
+        
+        {/* LEFT GROUP */}
+        <div className="flex items-center gap-4">
+          {/* Desktop Toggle + Breadcrumbs */}
+          <div className="hidden md:flex items-center gap-3">
+            <Button
+              className="bg-muted/40! border-foreground/5!"
+              variant="outline"
+              size="icon"
+              onClick={toggleSidebar}
+            >
+              <MenuIcon size="16" />
+            </Button>
+            <DashboardBreadcrumbs />
+          </div>
 
-        {/* LEFT SECTION */}
-        <div className="flex items-center gap-3">
-          {/* Desktop: Search bar + Menu button */}
-          <Button
-            className="hidden md:flex bg-muted/40! border-foreground/5!"
-            variant="outline"
-            size="icon"
-            onClick={toggleSidebar}
-          >
-            <MenuIcon size="16" />
-          </Button>
-
-          <Button
-            onClick={() => setCommandOpen((open) => !open)}
-            variant="outline"
-            size="sm"
-            className="hidden h-9 w-72 justify-start rounded-full bg-muted/40! border-foreground/5! text-muted-foreground md:flex"
-          >
-            <SearchIcon className="mr-2" size="16" /> Search
-          </Button>
-
-          {/* Mobile: Logo */}
-          <Link href='/' className="md:hidden relative cursor-pointer">
-            <Image
-              src="/logo.svg"
-              height={32}
-              width={32}
-              alt="Mono"
-              className="dark:invert ml-2 md:ml-0"
-            />
-
-          </Link>
-
-          <Link href='/' className="md:hidden text-lg font-semibold">Mono</Link>
+          {/* Mobile Logo Group */}
+          <div className="flex md:hidden items-center gap-3">
+            <Link href="/" className="relative cursor-pointer">
+              <Image
+                src="/logo.svg"
+                height={32}
+                width={32}
+                alt="Mono"
+                className="dark:invert"
+              />
+            </Link>
+            <Link href="/" className="text-lg font-semibold">Mono</Link>
+          </div>
         </div>
 
-        {/* RIGHT SECTION (Only on Mobile) */}
-        <div className="flex items-center gap-1 md:hidden">
-          <Button
-            onClick={() => setCommandOpen((open) => !open)}
-            variant="ghost"
-            size="sm"
-            className="flex h-9 w-30 justify-start rounded-full border bg-muted/45 font-normal text-muted-foreground"
-          >
-            <SearchIcon className="mr-2" size="16" /> Search
-          </Button>
+        {/* RIGHT GROUP */}
+        <div className="flex items-center gap-3">
+          {/* Desktop Search + User */}
+          <div className="hidden md:flex items-center gap-3">
+            <Button
+              onClick={() => setCommandOpen((open) => !open)}
+              variant="outline"
+              size="sm"
+              className="h-9 w-64 justify-start rounded-full bg-muted/40! border-foreground/5! text-muted-foreground"
+            >
+              <SearchIcon className="mr-2" size="16" /> Search
+            </Button>
+            <DashboardUserButton />
+          </div>
 
-          <Button
-            variant="ghost"
-            className="size-9"
-            onClick={toggleSidebar}
-          >
-            <MenuIcon size="16" />
-          </Button>
+          {/* Mobile Actions */}
+          <div className="flex md:hidden items-center gap-2">
+            <Button
+              onClick={() => setCommandOpen((open) => !open)}
+              variant="ghost"
+              size="icon"
+              className="size-9 rounded-full border bg-muted/45"
+            >
+              <SearchIcon size="16" />
+            </Button>
+            <DashboardUserButton />
+            <Button
+              variant="ghost"
+              size="icon"
+              className="size-9"
+              onClick={toggleSidebar}
+            >
+              <MenuIcon size="16" />
+            </Button>
+          </div>
         </div>
       </nav>
     </>
