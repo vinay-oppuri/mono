@@ -3,7 +3,6 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import {
@@ -55,7 +54,6 @@ const faq = [
 ]
 
 export const HomeView = () => {
-  const { setTheme, theme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const { data: session } = useSession()

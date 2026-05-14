@@ -9,7 +9,6 @@ import { Badge } from "@/components/ui/badge"
 import { formatDuration } from "@/lib/utils"
 import Markdown from "react-markdown"
 import { Transcript } from "./transcript"
-import { ChatProvider } from "./chat-provider"
 
 
 interface Props {
@@ -19,8 +18,7 @@ interface Props {
 const tabs = [
     { value: "summary", icon: <BookOpenTextIcon />, label: "Summary" },
     { value: "transcript", icon: <FileTextIcon />, label: "Transcript" },
-    { value: "recording", icon: <FileVideoIcon />, label: "Recording" },
-    { value: "chat", icon: <SparklesIcon />, label: "Ask AI" }
+    { value: "recording", icon: <FileVideoIcon />, label: "Recording" }
 ]
 
 export const CompletedState = ({ data }: Props) => {
@@ -39,9 +37,6 @@ export const CompletedState = ({ data }: Props) => {
                         <ScrollBar orientation="horizontal" />
                     </ScrollArea>
                 </div>
-                <TabsContent value="chat">
-                    <ChatProvider meetingId={data.id} meetingName={data.name} />
-                </TabsContent>
                 <TabsContent value="transcript">
                     <Transcript meetingId={data.id} />
                 </TabsContent>

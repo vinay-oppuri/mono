@@ -38,7 +38,6 @@
   "exclude": [
     "node_modules",
     "modules/meetings/**",
-    "modules/call/**",
-    "inngest/functions.ts"
+    "modules/call/**"
   ]
 }
