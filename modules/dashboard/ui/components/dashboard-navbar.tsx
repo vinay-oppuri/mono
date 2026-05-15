@@ -33,8 +33,7 @@ export const DashboardNavbar = () => {
     <>
       <DashboardCommand open={commandOpen} setOpen={setCommandOpen} />
 
-      <nav className="sticky top-0 z-40 flex h-16 items-center justify-between bg-sidebar border-b dark:border-none px-4 backdrop-blur-sm md:px-6">
-        
+      <nav className="sticky top-0 z-40 flex h-16 items-center justify-between bg-sidebar border-b dark:border-none px-2 backdrop-blur-sm md:px-6">    
         {/* LEFT GROUP */}
         <div className="flex items-center gap-4">
           {/* Desktop Toggle + Breadcrumbs */}
@@ -52,7 +51,7 @@ export const DashboardNavbar = () => {
 
           {/* Mobile Logo Group */}
           <div className="flex md:hidden items-center gap-3">
-            <Link href="/" className="relative cursor-pointer">
+            <Link href="/" className="relative cursor-pointer ml-2">
               <Image
                 src="/logo.svg"
                 height={32}
@@ -86,9 +85,9 @@ export const DashboardNavbar = () => {
               onClick={() => setCommandOpen((open) => !open)}
               variant="ghost"
               size="icon"
-              className="size-9 rounded-full border bg-muted/45"
+              className="size-9 rounded-full bg-none!"
             >
-              <SearchIcon size="16" />
+              <SearchIcon />
             </Button>
             <DashboardUserButton />
             <Button

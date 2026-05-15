@@ -47,12 +47,12 @@ export const DashboardUserButton = () => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button 
-                    variant="ghost" 
+                <Button
+                    variant="ghost"
                     className='h-10 w-10 rounded-full border border-foreground/5! transition hover:bg-muted/30 outline-none shrink-0 p-0'
                 >
                     {data.user.image ? (
-                        <Avatar className='size-10'>
+                        <Avatar className='size-8 md:size-9'>
                             <AvatarImage src={data.user.image} alt={data.user.name} />
                             <AvatarFallback><User size={16} /></AvatarFallback>
                         </Avatar>
