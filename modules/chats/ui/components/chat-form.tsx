@@ -138,7 +138,7 @@ export const ChatForm = ({ onSuccess, onCancel, initialValues }: ChatFormProps) 
                                         }))}
                                         onSelect={field.onChange}
                                         onSearch={setAgentSearch}
-                                        value={field.value}
+                                        value={field.value ?? ""}
                                         placeholder="Select an agent"
                                         className="w-full rounded-lg"
                                     />

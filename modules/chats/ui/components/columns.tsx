@@ -17,11 +17,11 @@ export const columns: ColumnDef<ChatGetMany[number]>[] = [
                 <span className="font-semibold capitalize">{row.original.title}</span>
                 <div className="flex items-center gap-x-2 text-sm text-muted-foreground">
                     <GeneratedAvatar
-                        seed={row.original.agent.name}
+                        seed={row.original.agent?.name ?? "Unknown"}
                         variant="botttsNeutral"
                         className="size-5"
                     />
-                    <span className="truncate">{row.original.agent.name}</span>
+                    <span className="truncate">{row.original.agent?.name ?? "Unknown Agent"}</span>
                 </div>
             </div>
         )

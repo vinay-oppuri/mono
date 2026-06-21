@@ -2,7 +2,7 @@ import { z } from "zod"
 
 export const chatsInsertSchema = z.object({
     title: z.string().min(1, { message: "Title is required" }),
-    agentId: z.string().min(1, { message: "Agent is required" })
+    agentId: z.string().nullish()
 })
 
 export const chatsUpdateSchema = chatsInsertSchema.extend({

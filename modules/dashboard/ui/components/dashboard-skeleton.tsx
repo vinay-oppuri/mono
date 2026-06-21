@@ -1,67 +1,33 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
 
 export const DashboardSkeleton = () => {
   return (
-    <div className="bg-card/60 mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-6 pb-24 md:px-8 md:py-8">
-      {/* Welcome Section Skeleton */}
-      <section className="rounded-lg border border-foreground/5 bg-card p-5 shadow-sm md:p-7">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-          <div className="max-w-2xl space-y-4">
-            <Skeleton className="h-6 w-24" />
-            <Skeleton className="h-10 w-64 md:w-80" />
-            <Skeleton className="h-4 w-full md:w-96" />
+    <div className="flex h-full flex-col bg-[#0D0F12]">
+      <div className="flex-1 overflow-y-auto">
+        <div className="mx-auto flex w-full max-w-3xl flex-col items-center px-4 pb-52 pt-20 md:px-6">
+          {/* Greeting skeleton */}
+          <div className="mb-12 flex flex-col items-center gap-4 w-full">
+            <Skeleton className="h-6 w-40 rounded-full bg-white/[0.06]" />
+            <Skeleton className="h-12 w-72 md:w-96 bg-white/[0.06]" />
+            <Skeleton className="h-5 w-52 bg-white/[0.04]" />
           </div>
-          <div className="flex flex-col gap-2 sm:flex-row">
-            <Skeleton className="h-10 w-32 rounded-full" />
-            <Skeleton className="h-10 w-32 rounded-full" />
+          {/* Prompt cards skeleton */}
+          <div className="grid w-full grid-cols-2 gap-3">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
+                <Skeleton className="h-4 w-20 mb-2 bg-white/[0.06]" />
+                <Skeleton className="h-3 w-32 bg-white/[0.04]" />
+              </div>
+            ))}
           </div>
         </div>
-      </section>
-
-      {/* Stats Cards Skeleton */}
-      <section className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        {[1, 2, 3].map((i) => (
-          <Card key={i} className="border border-foreground/5 bg-card shadow-sm">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
-              <Skeleton className="h-4 w-20" />
-              <Skeleton className="size-5" />
-            </CardHeader>
-            <CardContent>
-              <Skeleton className="h-10 w-16" />
-            </CardContent>
-          </Card>
-        ))}
-      </section>
-
-      {/* Lists Skeleton */}
-      <section className="grid grid-cols-1 gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-        <Card className="border border-foreground/5 bg-card shadow-sm">
-          <CardHeader className="flex flex-row items-center justify-between">
-            <Skeleton className="h-6 w-32" />
-            <Skeleton className="h-8 w-20" />
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-2 rounded-md border border-foreground/5 p-2">
-              {[1, 2, 3, 4].map((i) => (
-                <Skeleton key={i} className="h-12 w-full" />
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="border border-foreground/5 bg-card shadow-sm">
-          <CardHeader className="flex flex-row items-center justify-between">
-            <Skeleton className="h-6 w-20" />
-            <Skeleton className="h-8 w-20" />
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {[1, 2, 3, 4].map((i) => (
-              <Skeleton key={i} className="h-16 w-full rounded-md" />
-            ))}
-          </CardContent>
-        </Card>
-      </section>
+      </div>
+      {/* Input area skeleton */}
+      <div className="absolute bottom-0 left-0 right-0 pb-6 pt-12 px-4">
+        <div className="mx-auto w-full max-w-3xl">
+          <Skeleton className="h-16 w-full rounded-2xl bg-white/[0.06]" />
+        </div>
+      </div>
     </div>
   )
 }

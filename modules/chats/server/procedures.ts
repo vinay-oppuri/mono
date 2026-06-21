@@ -19,7 +19,7 @@ export const chatsRouter = createTRPCRouter({
                     agent: agents
                 })
                 .from(chats)
-                .innerJoin(agents, eq(chats.agentId, agents.id))
+                .leftJoin(agents, eq(chats.agentId, agents.id))
                 .where(
                     and(
                         eq(chats.id, input.id),
@@ -72,7 +72,7 @@ export const chatsRouter = createTRPCRouter({
                     messageCount: db.$count(chatMessages, eq(chats.id, chatMessages.chatId))
                 })
                 .from(chats)
-                .innerJoin(agents, eq(chats.agentId, agents.id))
+                .leftJoin(agents, eq(chats.agentId, agents.id))
                 .where(where)
                 .orderBy(desc(chats.updatedAt), desc(chats.id))
                 .limit(pageSize)
@@ -96,18 +96,20 @@ export const chatsRouter = createTRPCRouter({
     create: protectedProcedure
         .input(chatsInsertSchema)
         .mutation(async ({ input, ctx }) => {
-            const [existingAgent] = await db
-                .select()
-                .from(agents)
-                .where(
-                    and(
-                        eq(agents.id, input.agentId),
-                        eq(agents.userId, ctx.auth.user.id)
+            if (input.agentId) {
+                const [existingAgent] = await db
+                    .select()
+                    .from(agents)
+                    .where(
+                        and(
+                            eq(agents.id, input.agentId),
+                            eq(agents.userId, ctx.auth.user.id)
+                        )
                     )
-                )
 
-            if (!existingAgent) {
-                throw new TRPCError({ code: "NOT_FOUND", message: "Agent not found" })
+                if (!existingAgent) {
+                    throw new TRPCError({ code: "NOT_FOUND", message: "Agent not found" })
+                }
             }
 
             const [createdChat] = await db
@@ -175,7 +177,7 @@ export const chatsRouter = createTRPCRouter({
                     agent: agents
                 })
                 .from(chats)
-                .innerJoin(agents, eq(chats.agentId, agents.id))
+                .leftJoin(agents, eq(chats.agentId, agents.id))
                 .where(
                     and(
                         eq(chats.id, input.chatId),
@@ -205,9 +207,12 @@ export const chatsRouter = createTRPCRouter({
             let reply: string
 
             try {
+                const agentName = existingChat.agent?.name || "Assistant"
+                const agentInstructions = existingChat.agent?.instructions || "You are a helpful and intelligent AI assistant. Respond comprehensively and directly to the user's queries."
+
                 reply = await generateAgentReply({
-                    agentName: existingChat.agent.name,
-                    instructions: existingChat.agent.instructions,
+                    agentName: agentName,
+                    instructions: agentInstructions,
                     messages: history.map((message) => ({
                         role: message.role,
                         content: message.content

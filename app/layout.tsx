@@ -5,7 +5,6 @@ import "./globals.css";
 
 import { TRPCReactProvider } from "@/trpc/client";
 import { Toaster } from 'sonner';
-import { ThemeProvider } from "next-themes";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -44,14 +43,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark">
       <body className={`${inter.className} antialiased`}>
         <NuqsAdapter>
           <TRPCReactProvider>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              {children}
-              <Toaster />
-            </ThemeProvider>
+            {children}
+            <Toaster richColors theme="dark" />
           </TRPCReactProvider>
         </NuqsAdapter>
       </body>
