@@ -20,9 +20,18 @@ export default async function Page() {
 
   // Otherwise render a premium landing page
   return (
-    <div className="relative min-h-screen bg-[#0D0F12] text-white flex flex-col justify-between overflow-x-hidden selection:bg-[#8b5cf6]/30 selection:text-white">
-      {/* Background Radial Glow */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[600px] bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.12),transparent_70%)] z-0" />
+    <div className="relative min-h-screen text-white flex flex-col justify-between overflow-x-hidden selection:bg-[#8b5cf6]/30 selection:text-white">
+      {/* Hero Background Video */}
+      <div className="absolute inset-x-0 top-0 h-screen w-full z-0 pointer-events-none overflow-hidden">
+        <video
+          autoPlay
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-screen"
+        >
+          <source src="/mono-bg.mp4" type="video/mp4" />
+        </video>
+      </div>
 
       {/* ── Top Header Navigation ── */}
       <Navbar />

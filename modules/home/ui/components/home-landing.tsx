@@ -8,12 +8,12 @@ const Landing = () =>  {
 
           {/* Title */}
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.1] mb-6">
-            Re-usable <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8b5cf6] to-[#c4b5fd]">AI Agents</span><br />
+            Re-usable <span className="text-[#8b5cf6]">AI Agents</span><br />
             tailored for your workflow.
           </h1>
 
           {/* Paragraph */}
-          <p className="text-sm md:text-md text-[#8892b0] max-w-xl mx-auto leading-relaxed mb-10">
+          <p className="text-sm md:text-md text-white max-w-xl mx-auto leading-relaxed mb-10">
             Construct focused AI assistants with custom behavioral rules. Turn repeated prompts into standalone, reusable agents that save hours of repeated instructions.
           </p>
 
@@ -28,15 +28,15 @@ const Landing = () =>  {
             </Link>
             <Link
               href="/sign-in"
-              className="h-11 px-8 rounded-full bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.08] hover:text-white text-[#8892b0] transition-all duration-300 font-bold flex items-center justify-center text-xs md:text-sm hover:-translate-y-0.5 shadow-lg shadow-black/20"
+              className="h-11 px-8 rounded-full bg-background/40 border border-white/10 text-white transition-all duration-300 font-bold flex items-center justify-center text-xs md:text-sm hover:-translate-y-0.5 shadow-lg shadow-black/20"
             >
               Enter Workspace
             </Link>
           </div>
 
           {/* Features Column Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full text-left mb-32 relative z-10 px-2">
-            <div className="group p-8 rounded-3xl border border-white/[0.06] bg-white/[0.01] hover:border-[#8b5cf6]/30 hover:bg-[#8b5cf6]/5 hover:shadow-2xl hover:shadow-[#8b5cf6]/10 transition-all duration-500">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full text-left mb-32 -mt-8 relative z-10 px-2">
+            <div className="group bg-background/80 p-8 rounded-3xl border border-white/5 hover:border-[#8b5cf6]/30 hover:bg-background hover:shadow-2xl hover:shadow-[#8b5cf6]/10 transition-all duration-500">
               <div className="size-12 rounded-xl flex items-center justify-center border border-white/[0.08] bg-white/[0.03] text-white mb-6 group-hover:scale-110 group-hover:bg-[#8b5cf6] transition-all duration-300 shrink-0">
                 <Bot className="size-6 text-[#8b5cf6] group-hover:text-white transition-colors duration-300" />
               </div>
@@ -46,7 +46,7 @@ const Landing = () =>  {
               </p>
             </div>
 
-            <div className="group p-8 rounded-3xl border border-white/[0.06] bg-white/[0.01] hover:border-[#8b5cf6]/30 hover:bg-[#8b5cf6]/5 hover:shadow-2xl hover:shadow-[#8b5cf6]/10 transition-all duration-500">
+            <div className="group p-8 rounded-3xl border border-white/[0.06] bg-background/80 hover:border-[#8b5cf6]/30 hover:bg-background hover:shadow-2xl hover:shadow-[#8b5cf6]/10 transition-all duration-500">
               <div className="size-12 rounded-xl flex items-center justify-center border border-white/[0.08] bg-white/[0.03] text-white mb-6 group-hover:scale-110 group-hover:bg-[#8b5cf6] transition-all duration-300 shrink-0">
                 <MessageSquare className="size-6 text-[#8b5cf6] group-hover:text-white transition-colors duration-300" />
               </div>
@@ -56,7 +56,7 @@ const Landing = () =>  {
               </p>
             </div>
 
-            <div className="group p-8 rounded-3xl border border-white/[0.06] bg-white/[0.01] hover:border-[#8b5cf6]/30 hover:bg-[#8b5cf6]/5 hover:shadow-2xl hover:shadow-[#8b5cf6]/10 transition-all duration-500">
+            <div className="group p-8 rounded-3xl border border-white/[0.06] bg-background/80 hover:border-[#8b5cf6]/30 hover:bg-background hover:shadow-2xl hover:shadow-[#8b5cf6]/10 transition-all duration-500">
               <div className="size-12 rounded-xl flex items-center justify-center border border-white/[0.08] bg-white/[0.03] text-white mb-6 group-hover:scale-110 group-hover:bg-[#8b5cf6] transition-all duration-300 shrink-0">
                 <Terminal className="size-6 text-[#8b5cf6] group-hover:text-white transition-colors duration-300" />
               </div>
@@ -101,8 +101,7 @@ const Landing = () =>  {
 
           {/* Simple CTA / Pricing Banner */}
           <section id="pricing" className="w-full max-w-4xl py-20">
-            <div className="rounded-3xl bg-gradient-to-br from-[#8b5cf6]/20 to-transparent border border-[#8b5cf6]/30 p-10 md:p-14 text-center relative overflow-hidden">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(ellipse_at_top,#8b5cf6_0%,transparent_50%)] opacity-20 pointer-events-none" />
+            <div className="rounded-3xl border border-[#8b5cf6]/30 p-10 md:p-14 text-center relative overflow-hidden">
               <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 relative z-10">Start building for free</h2>
               <p className="text-xs md:text-sm text-[#8892b0] mb-8 max-w-lg mx-auto relative z-10">
                 Join thousands of developers and professionals saving hours every week with reusable, specialized AI agents.
