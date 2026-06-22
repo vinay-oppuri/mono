@@ -27,7 +27,7 @@ const Navbar = () => {
   return (
     <>
       <header className="fixed top-2 md:top-4 inset-x-2 md:inset-x-0 z-50 max-w-6xl mx-auto">
-        <div className="rounded-full bg-[#0D0F12]/80 backdrop-blur-sm border border-white/5 px-4 py-3 flex items-center justify-between transition-all duration-300">
+        <div className="rounded-full bg-background/40 backdrop-blur-md border border-foreground/5 px-4 py-3 flex items-center justify-between transition-all duration-300">
           {/* Logo */}
           <Link
             href="/"
@@ -104,8 +104,8 @@ const Navbar = () => {
                   h-10
                   px-6
                   rounded-full
-                  bg-[#8b5cf6]
-                  hover:bg-[#7c3aed]
+                  bg-purple-600
+                  hover:bg-purple-700
                   text-white
                   transition-all
                   text-sm
@@ -114,8 +114,7 @@ const Navbar = () => {
                   items-center
                   justify-center
                   shadow-lg
-                  shadow-[#8b5cf6]/25
-                  hover:shadow-[#8b5cf6]/40
+                  shadow-purple-600/20
                 "
               >
                 Get Started
@@ -156,7 +155,7 @@ const Navbar = () => {
           <>
             {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 z-40 bg-background/40 backdrop-blur-sm md:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -197,9 +196,9 @@ const Navbar = () => {
                 className="
                   rounded-3xl
                   border
-                  border-white/10
-                  bg-[#0D0F12]/90
-                  backdrop-blur-2xl
+                  border-foreground/5
+                  bg-background/90
+                  backdrop-blur-md
                   overflow-hidden
                   shadow-2xl
                 "
@@ -268,15 +267,15 @@ const Navbar = () => {
                       className="
                         h-9
                         rounded-full
-                        bg-[#8b5cf6]
-                        hover:bg-[#7c3aed]
+                        bg-purple-600
+                        hover:bg-purple-700
                         text-white
                         font-semibold
                         flex
                         items-center
                         justify-center
                         shadow-lg
-                        shadow-[#8b5cf6]/25
+                        shadow-purple-600/20
                       "
                     >
                       Get Started
