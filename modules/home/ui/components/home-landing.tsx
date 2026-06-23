@@ -1,4 +1,6 @@
 
+import Preloader from "@/components/preloader";
+import CharAnimation from "@/components/char-animation";
 import {
   ArrowRight,
   Bot,
@@ -55,9 +57,12 @@ export default function Landing() {
       {/* Hero */}
       <section className="min-h-screen flex flex-col items-center justify-center px-4 text-center">
         <div className="max-w-3xl">
-          <h1 className="text-4xl md:text-6xl font-extrabold leading-[1.1] text-white mb-6">
-            Re-usable <span className="text-purple-500">AI Agents</span>
-            <br />
+          <h1 className="text-4xl md:text-6xl font-bold leading-[1.1] text-white mb-6">
+            Re-usable AI{" "}
+            <CharAnimation
+              text="Agents"
+              className="text-purple-500"
+            /> {" "}
             tailored for your workflow.
           </h1>
 
@@ -163,7 +168,7 @@ export default function Landing() {
         id="pricing"
         className="max-w-4xl mx-auto px-4 py-24"
       >
-        <div className="order border-[#8b5cf6]/30  bg-background/80 backdrop-blur-md rounded-4xl p-10 md:p-14 text-center">
+        <div className="border border-[#8b5cf6]/30  bg-background/80 backdrop-blur-md rounded-4xl p-10 md:p-14 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Start building for free
           </h2>

@@ -1,14 +1,21 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Source_Serif_4 } from "next/font/google";
 import { NuqsAdapter } from 'nuqs/adapters/next';
 import "./globals.css";
 
 import { TRPCReactProvider } from "@/trpc/client";
 import { Toaster } from 'sonner';
+import { ScrollToTop } from "@/components/ui/scroll-to-top";
 
 const inter = Inter({
   subsets: ["latin"],
 });
+
+const sourceSerif = Source_Serif_4({
+  subsets: ["latin"],
+  weight: "variable",
+  variable: "--font-geist-sans",
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://mono.vinayweb.in'),
@@ -44,9 +51,10 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
 
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${inter.className} ${sourceSerif.variable} antialiased`}>
         <NuqsAdapter>
           <TRPCReactProvider>
+            <ScrollToTop />
             {children}
             <Toaster richColors theme="dark" />
           </TRPCReactProvider>
