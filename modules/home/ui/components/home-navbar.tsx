@@ -7,18 +7,10 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const navLinks = [
-  {
-    label: "Features",
-    href: "#features",
-  },
-  {
-    label: "How it Works",
-    href: "#how-it-works",
-  },
-  {
-    label: "Pricing",
-    href: "#pricing",
-  },
+  { label: "Features", href: "#features" },
+  { label: "How it Works", href: "#how-it-works" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Login", href: "/sign-in" },
 ];
 
 const Navbar = () => {
@@ -26,26 +18,26 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="fixed top-2 md:top-4 inset-x-2 md:inset-x-0 z-50 max-w-6xl mx-auto">
-        <div className="rounded-full bg-background/40 backdrop-blur-md border border-foreground/5 px-4 py-3 flex items-center justify-between transition-all duration-300">
+      <header className="fixed top-3 md:top-6 inset-x-3 md:inset-x-0 z-50 max-w-[850px] mx-auto">
+        <div className="rounded-full bg-background/40 backdrop-blur-md border border-foreground/5 p-4 flex items-center justify-between transition-all duration-300">
           {/* Logo */}
           <Link
             href="/"
             className="flex items-center gap-3 group cursor-pointer"
           >
             <div className="relative flex items-center justify-center">
-              <div className="absolute inset-0 bg-[#8b5cf6] blur-md opacity-20 group-hover:opacity-40 transition-opacity duration-500 rounded-full" />
+              <div className="ml-2 md:ml-4 absolute inset-0 bg-[#8b5cf6] blur-md opacity-20 group-hover:opacity-40 transition-opacity duration-500 rounded-full" />
 
               <Image
                 src="/logo.svg"
                 alt="Logo"
                 width={30}
                 height={30}
-                className="ml-2 dark:invert shrink-0 relative z-10 group-hover:scale-105 transition-transform duration-300"
+                className="ml-2 md:ml-4 dark:invert shrink-0 relative z-10 group-hover:scale-105 transition-transform duration-300"
               />
             </div>
 
-            <span className="text-white font-bold text-lg tracking-tight select-none">
+            <span className="text-foreground font-bold text-lg tracking-tight select-none">
               Mono
             </span>
           </Link>
@@ -59,8 +51,8 @@ const Navbar = () => {
                 className="
                   text-sm
                   font-medium
-                  text-[#8892b0]
-                  hover:text-white
+                  text-muted-foreground
+                  hover:text-foreground
                   transition-all
                   duration-200
                   relative
@@ -69,7 +61,7 @@ const Navbar = () => {
                   after:-bottom-1
                   after:h-px
                   after:w-0
-                  after:bg-white
+                  after:bg-foreground
                   after:transition-all
                   hover:after:w-full
                 "
@@ -81,19 +73,6 @@ const Navbar = () => {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-5">
-            <Link
-              href="/sign-in"
-              className="
-                text-sm
-                font-semibold
-                text-[#8892b0]
-                hover:text-white
-                transition-colors
-              "
-            >
-              Sign In
-            </Link>
-
             <motion.div
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
@@ -104,9 +83,9 @@ const Navbar = () => {
                   h-10
                   px-6
                   rounded-full
-                  bg-purple-600
-                  hover:bg-purple-700
-                  text-white
+                  bg-primary
+                  hover:bg-primary/90
+                  text-primary-foreground
                   transition-all
                   text-sm
                   font-bold
@@ -114,7 +93,7 @@ const Navbar = () => {
                   items-center
                   justify-center
                   shadow-lg
-                  shadow-purple-600/20
+                  shadow-primary/20
                 "
               >
                 Get Started
@@ -131,7 +110,7 @@ const Navbar = () => {
               flex mr-1
               items-center
               justify-center
-              text-white
+              text-foreground
             "
           >
             <AnimatePresence mode="wait">
@@ -185,7 +164,7 @@ const Navbar = () => {
               }}
               className="
                 fixed
-                top-[84px]
+                top-21
                 left-4
                 right-4
                 z-50 
@@ -226,12 +205,11 @@ const Navbar = () => {
                           flex
                           items-center
                           rounded-2xl
-                          px-4
-                          py-2
+                          p-3
                           font-medium
-                          text-[#8892b0]
-                          hover:text-white
-                          hover:bg-white/5
+                          text-foreground/80
+                          hover:text-foreground
+                          hover:bg-foreground/5
                           transition-all
                         "
                       >
@@ -239,23 +217,6 @@ const Navbar = () => {
                       </Link>
                     </motion.div>
                   ))}
-
-                  <div className="h-px bg-white/10 my-3" />
-
-                  <Link
-                    href="/sign-in"
-                    onClick={() => setIsOpen(false)}
-                    className="
-                      flex
-                      justify-center
-                      py-2
-                      text-[#8892b0]
-                      hover:text-white
-                      transition-colors
-                    "
-                  >
-                    Sign In
-                  </Link>
 
                   <motion.div
                     whileTap={{ scale: 0.98 }}
@@ -265,17 +226,17 @@ const Navbar = () => {
                       href="/sign-up"
                       onClick={() => setIsOpen(false)}
                       className="
-                        h-9
-                        rounded-full
-                        bg-purple-600
-                        hover:bg-purple-700
-                        text-white
+                        h-10
+                        rounded-2xl
+                        bg-primary
+                        hover:bg-primary/90
+                        text-primary-foreground
                         font-semibold
                         flex
                         items-center
                         justify-center
                         shadow-lg
-                        shadow-purple-600/20
+                        shadow-primary/20
                       "
                     >
                       Get Started

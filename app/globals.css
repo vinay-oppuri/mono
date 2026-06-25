@@ -43,9 +43,45 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* ── Single dark-first theme (app is dark-only) ── */
+/* ── Light mode theme ── */
 :root {
   --radius: 0.625rem;
+  --background: #ffffff;
+  --foreground: #09090b;
+  --card: rgba(255, 255, 255, 0.5);
+  --card-foreground: #09090b;
+  --popover: #ffffff;
+  --popover-foreground: #09090b;
+  --primary: #0ea5e9;
+  --primary-foreground: #ffffff;
+  --secondary: rgba(0, 0, 0, 0.04);
+  --secondary-foreground: #09090b;
+  --muted: rgba(0, 0, 0, 0.04);
+  --muted-foreground: #64748b;
+  --accent: rgba(0, 0, 0, 0.03);
+  --accent-foreground: #09090b;
+  --destructive: hsl(0 62.8% 30.6%);
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.08);
+  --input: rgba(0, 0, 0, 0.08);
+  --ring: #0ea5e9;
+  --chart-1: hsl(0 0% 10%);
+  --chart-2: hsl(0 0% 30%);
+  --chart-3: hsl(0 0% 50%);
+  --chart-4: hsl(0 0% 70%);
+  --chart-5: hsl(0 0% 90%);
+  --sidebar: #ffffff;
+  --sidebar-foreground: #64748b;
+  --sidebar-primary: #0ea5e9;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgba(0, 0, 0, 0.03);
+  --sidebar-accent-foreground: #09090b;
+  --sidebar-border: rgba(0, 0, 0, 0.06);
+  --sidebar-ring: #0ea5e9;
+}
+
+/* ── Dark mode theme ── */
+.dark {
   --background: #0D0F12;
   --foreground: #ffffff;
   --card: rgba(26, 29, 35, 0.5);

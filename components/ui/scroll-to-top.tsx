@@ -44,7 +44,7 @@ export const ScrollToTop = () => {
                 size="icon"
                 className="
                     rounded-full w-12 h-12
-                    bg-purple-600 backdrop-blur-md 
+                    bg-primary backdrop-blur-md 
                     btn-inner-shadow text-white 
                     hover:scale-110 transition-all duration-300
                     hover:bg-purple-600/90 group

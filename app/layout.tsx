@@ -6,6 +6,7 @@ import "./globals.css";
 import { TRPCReactProvider } from "@/trpc/client";
 import { Toaster } from 'sonner';
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -50,15 +51,17 @@ export const metadata: Metadata = {
 export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
 
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} ${sourceSerif.variable} antialiased`}>
-        <NuqsAdapter>
-          <TRPCReactProvider>
-            <ScrollToTop />
-            {children}
-            <Toaster richColors theme="dark" />
-          </TRPCReactProvider>
-        </NuqsAdapter>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <NuqsAdapter>
+            <TRPCReactProvider>
+              <ScrollToTop />
+              {children}
+              <Toaster richColors />
+            </TRPCReactProvider>
+          </NuqsAdapter>
+        </ThemeProvider>
       </body>
     </html>
   );

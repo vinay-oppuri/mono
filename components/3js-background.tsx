@@ -1,21 +1,37 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useEffect, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
+import { useTheme } from "next-themes";
 
-function TopLightBeam() {
+function TopLightBeam({ isLight }: { isLight: boolean }) {
   const uniforms = useMemo(() => ({
     uColor: { value: new THREE.Color(0.4, 0.05, 1.0) },
   }), []);
+
+  const targetColor = useMemo(() => new THREE.Color(), []);
+
+  useEffect(() => {
+    targetColor.setRGB(
+      isLight ? 0.05 : 0.4,
+      isLight ? 0.6 : 0.05,
+      isLight ? 1.0 : 1.0
+    );
+  }, [isLight, targetColor]);
+
+  useFrame(() => {
+    uniforms.uColor.value.lerp(targetColor, 0.05);
+  });
 
   return (
     <mesh position={[0, 2, -4]}>
       <planeGeometry args={[20, 12]} />
       <shaderMaterial
+        key={isLight ? "light-beam" : "dark-beam"}
         transparent
-        blending={THREE.AdditiveBlending}
+        blending={isLight ? THREE.NormalBlending : THREE.AdditiveBlending}
         depthWrite={false}
         uniforms={uniforms}
         vertexShader={`
@@ -32,7 +48,7 @@ function TopLightBeam() {
             float beam = smoothstep(0.18, 0.0, abs(vUv.x - 0.5) / (1.5 - vUv.y));
             float fade = smoothstep(1.0, 0.4, distance(vUv, vec2(0.5, 1.0)));
             float intensity = beam * fade;
-            // Very faint — just a subtle purple tint in the upper scene
+            // Very faint
             gl_FragColor = vec4(uColor * intensity, intensity * 0.07);
           }
         `}
@@ -41,11 +57,24 @@ function TopLightBeam() {
   );
 }
 
-function GlowingCrest() {
+function GlowingCrest({ isLight }: { isLight: boolean }) {
   const uniforms = useMemo(() => ({
-    // Violet-purple rim — HDR but not overblown
     uRimColor: { value: new THREE.Color(1.4, 0.2, 3.2) },
   }), []);
+
+  const targetColor = useMemo(() => new THREE.Color(), []);
+
+  useEffect(() => {
+    targetColor.setRGB(
+      isLight ? 0.2 : 1.4,
+      isLight ? 1.0 : 0.2,
+      isLight ? 2.5 : 3.2
+    );
+  }, [isLight, targetColor]);
+
+  useFrame(() => {
+    uniforms.uRimColor.value.lerp(targetColor, 0.05);
+  });
 
   return (
     // Sunk much lower — only top ~12% of sphere arc is visible
@@ -94,7 +123,7 @@ function GlowingCrest() {
   );
 }
 
-function StarField() {
+function StarField({ isLight }: { isLight: boolean }) {
   const pointsRef = useRef<THREE.Points>(null);
   const count = 700;
 
@@ -130,23 +159,24 @@ function StarField() {
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
       <pointsMaterial
+        key={isLight ? "light-stars" : "dark-stars"}
         size={0.015}
-        color={new THREE.Color(0.85, 0.8, 1.0)}
+        color={isLight ? new THREE.Color(0.0, 0.2, 0.6) : new THREE.Color(0.85, 0.8, 1.0)}
         transparent
         opacity={0.45}
-        blending={THREE.AdditiveBlending}
+        blending={isLight ? THREE.NormalBlending : THREE.AdditiveBlending}
         depthWrite={false}
       />
     </points>
   );
 }
 
-function Scene() {
+function Scene({ isLight }: { isLight: boolean }) {
   return (
     <>
-      <TopLightBeam />
-      <GlowingCrest />
-      <StarField />
+      <TopLightBeam isLight={isLight} />
+      <GlowingCrest isLight={isLight} />
+      <StarField isLight={isLight} />
 
       <EffectComposer enableNormalPass={false}>
         <Bloom
@@ -160,30 +190,39 @@ function Scene() {
   );
 }
 
-export default function PlanetBackground() {
+export default function PlanetBackground({ onLoaded }: { onLoaded?: () => void }) {
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Default to dark mode if not mounted yet
+  const isLight = mounted && resolvedTheme === 'light';
+
   return (
-    <div className="fixed inset-0 -z-10 w-full h-full pointer-events-none overflow-hidden">
-      {/* Near-pure black — deep space */}
-      <div className="absolute inset-0 bg-[#04000a]" />
-
-      {/* Barely-there purple ambient at top */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_30%_at_50%_0%,rgba(100,20,180,0.06),transparent_70%)]" />
-
-      {/* Grid — almost invisible */}
-      <div
-        className="absolute inset-0 opacity-[0.03] mix-blend-screen"
+    <div className="fixed inset-0 -z-10 w-full h-full pointer-events-none overflow-hidden transition-colors duration-1000" style={{ backgroundColor: isLight ? "#f0f8ff" : "#04000a" }}>
+      {/* Barely-there purple/sky ambient at top */}
+      <div 
+        className="absolute inset-0 transition-opacity duration-1000"
         style={{
-          backgroundImage: `
-            linear-gradient(to right, #9333ea 1px, transparent 1px),
-            linear-gradient(to bottom, #9333ea 1px, transparent 1px)
-          `,
-          backgroundSize: "55px 55px",
+          background: isLight 
+            ? "radial-gradient(ellipse 60% 30% at 50% 0%, rgba(14,165,233,0.15), transparent 70%)"
+            : "radial-gradient(ellipse 60% 30% at 50% 0%, rgba(100,20,180,0.06), transparent 70%)"
         }}
       />
 
-      <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
-        <color attach="background" args={["#030008"]} />
-        <Scene />
+      <Canvas 
+        camera={{ position: [0, 0, 5], fov: 50 }}
+        onCreated={() => {
+          setTimeout(() => {
+            onLoaded?.();
+          }, 100);
+        }}
+      >
+        {/* We use clearColor on the renderer or just rely on the parent div background since it's transparent */}
+        <Scene isLight={isLight} />
       </Canvas>
     </div>
   );

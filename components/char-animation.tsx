@@ -17,13 +17,13 @@ const CharAnimation = ({ text, className }: CharAnimationProps) => {
                     <motion.span
                         key={index}
                         initial={{fontWeight: 600}}
-                        animate={{fontWeight: [600, 800, 600]}}
+                        animate={{fontWeight: [600, 900, 600]}}
                         transition={{
                             duration: 2,
                             ease: "easeInOut",
                             delay: index * 0.2,
                             repeat: Infinity,
-                            repeatDelay: 2
+                            repeatDelay: 1
                         }}
                         className='inline-block tracking-tight font-sans'
                     >
