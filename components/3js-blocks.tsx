@@ -8,30 +8,25 @@ import { useTheme } from "next-themes";
 
 function FlowingBlocks({ isLight }: { isLight: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
-  // We use an array of refs to animate each block individually
   const blocksRef = useRef<THREE.Mesh[]>([]);
 
   // Generate random physical properties for 30 blocks
   const blocksData = useMemo(() => {
     return Array.from({ length: 30 }, () => ({
-      // Base positions
       baseX: (Math.random() - 0.5) * 6,
       baseY: (Math.random() - 0.5) * 12,
       baseZ: (Math.random() - 0.5) * 6,
-      // Random starting rotations
       rotX: Math.random() * Math.PI,
       rotY: Math.random() * Math.PI,
-      // Random sizes
       scale: Math.random() * 0.7 + 0.3,
-      // Unique speeds for rotation and airflow
       rotSpeedX: (Math.random() - 0.5) * 0.02,
       rotSpeedY: (Math.random() - 0.5) * 0.02,
-      flowOffset: Math.random() * Math.PI * 2, // Staggers the wind effect
+      flowOffset: Math.random() * Math.PI * 2, 
     }));
   }, []);
 
   const materialProps = useMemo(() => ({
-    color: isLight ? "#0ea5e9" : "#8b5cf6", // Tailwind sky-500 / violet-500
+    color: isLight ? "#0ea5e9" : "#8b5cf6", 
     roughness: 0.1,
     metalness: 0.5,
     transparent: true,
@@ -43,14 +38,18 @@ function FlowingBlocks({ isLight }: { isLight: boolean }) {
 
     const time = state.clock.elapsedTime;
 
+    // --- Responsive X Positioning ---
+    // If screen width is less than 768px (mobile), bring blocks closer to center
+    const isMobile = window.innerWidth < 768;
+    const startX = isMobile ? 3.5 : 8; 
+    const endX = isMobile ? -3.5 : -8;
+
     // --- 1. THE SCROLL EFFECT (Side Switching) ---
     const scrollY = window.scrollY;
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
     const scrollProgress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
 
-    // Map progress to X position (Right to Left)
-    const startX = 8;
-    const endX = -8;
+    // Map progress to X position
     const targetX = startX + (endX - startX) * scrollProgress;
 
     // Smoothly drag the entire group to the target X
@@ -72,8 +71,7 @@ function FlowingBlocks({ isLight }: { isLight: boolean }) {
       block.rotation.x += data.rotSpeedX;
       block.rotation.y += data.rotSpeedY;
 
-      // Air flow: Use Sine and Cosine waves to create a drifting/bobbing effect
-      // They orbit slightly around their base positions
+      // Air flow: Use Sine and Cosine waves
       block.position.y = data.baseY + Math.sin(time * 0.5 + data.flowOffset) * 1.5;
       block.position.z = data.baseZ + Math.cos(time * 0.4 + data.flowOffset) * 1.0;
     });

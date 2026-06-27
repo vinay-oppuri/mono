@@ -19,7 +19,7 @@ const Navbar = () => {
   return (
     <>
       <header className="fixed top-3 md:top-6 inset-x-3 md:inset-x-0 z-50 max-w-[850px] mx-auto">
-        <div className="rounded-full bg-background/40 backdrop-blur-md border border-foreground/5 p-2 flex items-center justify-between transition-all duration-300">
+        <div className="rounded-full bg-background/40 backdrop-blur-md border border-foreground/5 p-4 md:p-3 flex items-center justify-between transition-all duration-300">
           {/* Logo */}
           <Link
             href="/"
