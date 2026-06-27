@@ -5,12 +5,12 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const navLinks = [
   { label: "Features", href: "#features" },
   { label: "How it Works", href: "#how-it-works" },
   { label: "Pricing", href: "#pricing" },
-  { label: "Login", href: "/sign-in" },
 ];
 
 const Navbar = () => {
@@ -19,7 +19,7 @@ const Navbar = () => {
   return (
     <>
       <header className="fixed top-3 md:top-6 inset-x-3 md:inset-x-0 z-50 max-w-[850px] mx-auto">
-        <div className="rounded-full bg-background/40 backdrop-blur-md border border-foreground/5 p-4 flex items-center justify-between transition-all duration-300">
+        <div className="rounded-full bg-background/40 backdrop-blur-md border border-foreground/5 p-2 flex items-center justify-between transition-all duration-300">
           {/* Logo */}
           <Link
             href="/"
@@ -72,13 +72,11 @@ const Navbar = () => {
           </nav>
 
           {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-5">
-            <motion.div
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
-            >
+          <div className="hidden md:flex items-center gap-2">
+              <ThemeToggle /> 
+              <div className="w-px h-full bg-red-400! text-red-500! z-50!" />
               <Link
-                href="/sign-up"
+                href="/sign-in"
                 className="
                   h-10
                   px-6
@@ -92,13 +90,12 @@ const Navbar = () => {
                   flex
                   items-center
                   justify-center
-                  shadow-lg
+                  shadow-md
                   shadow-primary/20
                 "
               >
                 Get Started
               </Link>
-            </motion.div>
           </div>
 
           {/* Mobile Menu Button */}
