@@ -11,8 +11,7 @@ export default function HomeClientWrapper({ children }: { children: React.ReactN
     <>
       {/* <PlanetBackground onLoaded={() => setBgLoaded(true)} /> */}
       
-      {/* <div className={`transition-opacity duration-1000 ${bgLoaded ? 'opacity-100' : 'opacity-0'}`}> */}
-      <div className="transition-opacity duration-1000 opacity-100">
+      <div>
         {/* {bgLoaded && <ThemeToggle />} */}
         {children}
       </div>

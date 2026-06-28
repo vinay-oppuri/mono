@@ -18,7 +18,7 @@ export default async function Page() {
 
   // Otherwise render a premium landing page
   return (
-    <div className="relative min-h-screen text-foreground flex flex-col justify-between overflow-x-hidden selection:bg-primary/30 selection:text-primary-foreground">
+    <div className="relative min-h-screen text-foreground flex flex-col justify-between overflow-x-hidden">
       <HomeClientWrapper>
         {/* ── Top Header Navigation ── */}
         <Navbar />

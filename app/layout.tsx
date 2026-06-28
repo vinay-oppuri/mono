@@ -52,7 +52,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} ${sourceSerif.variable} antialiased`}>
+      <body className={`${inter.className} ${sourceSerif.variable} antialiased scrollbar-none`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <NuqsAdapter>
             <TRPCReactProvider>

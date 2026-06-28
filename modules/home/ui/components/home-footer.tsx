@@ -3,7 +3,7 @@ import { Github, Twitter, Linkedin, Mail } from 'lucide-react';
 
 const Footer = () => {
     return (
-        <footer className="border-t border-border bg-background/80 backdrop-blur-md px-6 py-12 md:py-16 text-muted-foreground">
+        <footer className="border-t border-white/5 bg-black/80 px-6 py-12 md:py-16 text-muted-foreground">
             <div className="container mx-auto max-w-6xl">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 mb-12">
                     <div className="col-span-1 md:col-span-2">
@@ -14,19 +14,19 @@ const Footer = () => {
                             Building the next generation of AI-powered tools for developers and creators.
                         </p>
                         <div className="flex items-center space-x-4">
-                            <Link href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground/60 hover:text-foreground transition-colors">
+                            <Link href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground/60 hover:text-foreground">
                                 <Github size={20} />
                                 <span className="sr-only">GitHub</span>
                             </Link>
-                            <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground/60 hover:text-foreground transition-colors">
+                            <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground/60 hover:text-foreground">
                                 <Twitter size={20} />
                                 <span className="sr-only">Twitter</span>
                             </Link>
-                            <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground/60 hover:text-foreground transition-colors">
+                            <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground/60 hover:text-foreground">
                                 <Linkedin size={20} />
                                 <span className="sr-only">LinkedIn</span>
                             </Link>
-                            <Link href="mailto:hello@monoworkspace.com" className="text-muted-foreground/60 hover:text-foreground transition-colors">
+                            <Link href="mailto:hello@monoworkspace.com" className="text-muted-foreground/60 hover:text-foreground">
                                 <Mail size={20} />
                                 <span className="sr-only">Email</span>
                             </Link>
@@ -36,20 +36,20 @@ const Footer = () => {
                     <div>
                         <h3 className="text-foreground font-medium mb-4 text-sm tracking-wide">Resources</h3>
                         <ul className="space-y-3 text-sm">
-                            <li><Link href="/docs" className="hover:text-muted-foreground text-muted-foreground/80 transition-colors">Documentation</Link></li>
-                            <li><Link href="/blog" className="hover:text-muted-foreground text-muted-foreground/80 transition-colors">Blog</Link></li>
-                            <li><Link href="/showcase" className="hover:text-muted-foreground text-muted-foreground/80 transition-colors">Showcase</Link></li>
-                            <li><Link href="/pricing" className="hover:text-muted-foreground text-muted-foreground/80 transition-colors">Pricing</Link></li>
+                            <li><Link href="/docs" className="hover:text-muted-foreground text-muted-foreground/80">Documentation</Link></li>
+                            <li><Link href="/blog" className="hover:text-muted-foreground text-muted-foreground/80">Blog</Link></li>
+                            <li><Link href="/showcase" className="hover:text-muted-foreground text-muted-foreground/80">Showcase</Link></li>
+                            <li><Link href="/pricing" className="hover:text-muted-foreground text-muted-foreground/80">Pricing</Link></li>
                         </ul>
                     </div>
 
                     <div>
                         <h3 className="text-foreground font-medium mb-4 text-sm tracking-wide">Company</h3>
                         <ul className="space-y-3 text-sm">
-                            <li><Link href="/about" className="hover:text-muted-foreground text-muted-foreground/80 transition-colors">About Us</Link></li>
-                            <li><Link href="/careers" className="hover:text-muted-foreground text-muted-foreground/80 transition-colors">Careers</Link></li>
-                            <li><Link href="/privacy" className="hover:text-muted-foreground text-muted-foreground/80 transition-colors">Privacy Policy</Link></li>
-                            <li><Link href="/terms" className="hover:text-muted-foreground text-muted-foreground/80 transition-colors">Terms of Service</Link></li>
+                            <li><Link href="/about" className="hover:text-muted-foreground text-muted-foreground/80">About Us</Link></li>
+                            <li><Link href="/careers" className="hover:text-muted-foreground text-muted-foreground/80">Careers</Link></li>
+                            <li><Link href="/privacy" className="hover:text-muted-foreground text-muted-foreground/80">Privacy Policy</Link></li>
+                            <li><Link href="/terms" className="hover:text-muted-foreground text-muted-foreground/80">Terms of Service</Link></li>
                         </ul>
                     </div>
                 </div>
@@ -59,9 +59,9 @@ const Footer = () => {
                         &copy; {new Date().getFullYear()} MONO WORKSPACE. ALL RIGHTS RESERVED.
                     </p>
                     <div className="flex space-x-6 text-[11px] text-muted-foreground/50 tracking-wider font-mono uppercase">
-                        <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
-                        <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
-                        <Link href="/cookies" className="hover:text-foreground transition-colors">Cookies</Link>
+                        <Link href="/privacy" className="hover:text-foreground">Privacy</Link>
+                        <Link href="/terms" className="hover:text-foreground">Terms</Link>
+                        <Link href="/cookies" className="hover:text-foreground">Cookies</Link>
                     </div>
                 </div>
             </div>
