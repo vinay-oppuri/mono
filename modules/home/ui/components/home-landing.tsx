@@ -91,11 +91,11 @@ export default function Landing() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Feature 1: Large Box */}
-            <div className="md:col-span-2 group relative overflow-hidden rounded-2xl md:rounded-4xl p-4 md:p-8 border border-white/10 bg-black hover:bg-white/2 transition-colors duration-500">
+            <div className="md:col-span-2 group relative overflow-hidden rounded-2xl md:rounded-4xl p-4 md:p-8 border-2 border-white/5 bg-black hover:bg-white/2 transition-colors duration-500">
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10 flex flex-col h-full justify-between">
                 <div>
-                  <div className="size-12 rounded-full mb-4 flex items-center justify-center border border-white/10 bg-black group-hover:border-white/30 transition-colors">
+                  <div className="size-12 rounded-full mb-4 flex items-center justify-center border-2 border-white/5 bg-black group-hover:border-white/30 transition-colors">
                     <Bot className="size-5 text-white/50 group-hover:text-white transition-colors" />
                   </div>
                   <h3 className="text-lg md:text-xl font-light tracking-wider text-white mb-4 uppercase">
@@ -106,7 +106,7 @@ export default function Landing() {
                   </p>
                 </div>
                 {/* Mini UI visual */}
-                <div className="mt-6 p-6 rounded-lg md:rounded-xl border border-white/10 bg-white/[0.02] space-y-4">
+                <div className="mt-6 p-6 rounded-lg md:rounded-xl border-2 border-white/5 bg-white/[0.02] space-y-4">
                    <div className="flex items-center space-x-3">
                      <div className="w-2 h-2 rounded-full bg-white/30"></div>
                      <div className="text-xs text-white/50 font-mono">system_prompt.txt</div>
@@ -121,10 +121,10 @@ export default function Landing() {
             </div>
 
             {/* Feature 2: Small Box */}
-            <div className="md:col-span-1 group relative overflow-hidden rounded-2xl md:rounded-4xl p-4 md:p-8 border border-white/10 bg-black hover:bg-white/[0.02] transition-colors duration-500">
+            <div className="md:col-span-1 group relative overflow-hidden rounded-2xl md:rounded-4xl p-4 md:p-8 border-2 border-white/5 bg-black hover:bg-white/[0.02] transition-colors duration-500">
                <div className="absolute inset-0 bg-gradient-to-b from-white/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                <div className="relative z-10 flex flex-col h-full">
-                  <div className="size-12 rounded-full mb-4 flex items-center justify-center border border-white/10 bg-black group-hover:border-white/30 transition-colors">
+                  <div className="size-12 rounded-full mb-4 flex items-center justify-center border-2 border-white/5 bg-black group-hover:border-white/30 transition-colors">
                     <MessageSquare className="size-5 text-white/50 group-hover:text-white transition-colors" />
                   </div>
                   <h3 className="text-base md:text-lg font-light tracking-wider text-white mb-4 uppercase">
@@ -142,10 +142,10 @@ export default function Landing() {
             </div>
 
             {/* Feature 3: Full Width Box */}
-            <div className="md:col-span-3 group relative overflow-hidden rounded-2xl md:rounded-4xl p-4 md:p-8 border border-white/10 bg-black hover:bg-white/[0.02] transition-colors duration-500 flex flex-col md:flex-row items-center gap-12">
+            <div className="md:col-span-3 group relative overflow-hidden rounded-2xl md:rounded-4xl p-4 md:p-8 border-2 border-white/5 bg-black hover:bg-white/[0.02] transition-colors duration-500 flex flex-col md:flex-row items-center gap-12">
                <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                <div className="relative z-10 flex-1">
-                  <div className="size-12 rounded-full mb-4 flex items-center justify-center border border-white/10 bg-black group-hover:border-white/30 transition-colors">
+                  <div className="size-12 rounded-full mb-4 flex items-center justify-center border-2 border-white/5 bg-black group-hover:border-white/30 transition-colors">
                     <Terminal className="size-5 text-white/50 group-hover:text-white transition-colors" />
                   </div>
                   <h3 className="text-lg md:text-xl font-light tracking-wider text-white mb-2 uppercase">
@@ -156,12 +156,12 @@ export default function Landing() {
                   </p>
                </div>
                <div className="relative z-10 flex-1 w-full flex justify-end">
-                  <div className="w-full max-w-md h-40 rounded-xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-6 flex flex-col gap-4">
+                  <div className="w-full max-w-md h-40 rounded-xl border-2 border-white/5 bg-gradient-to-br from-white/5 to-transparent p-6 flex flex-col gap-4">
                      <div className="flex gap-4">
-                        <div className="flex-1 h-20 rounded-lg bg-white/5 border border-white/5"></div>
-                        <div className="flex-1 h-20 rounded-lg bg-white/10 border border-white/10"></div>
+                        <div className="flex-1 h-20 rounded-lg bg-white/5 border-2 border-white/5"></div>
+                        <div className="flex-1 h-20 rounded-lg bg-white/10 border-2 border-white/5"></div>
                      </div>
-                     <div className="w-full h-8 rounded-lg bg-white/5 border border-white/5"></div>
+                     <div className="w-full h-8 rounded-lg bg-white/5 border-2 border-white/5"></div>
                   </div>
                </div>
             </div>
@@ -198,7 +198,7 @@ export default function Landing() {
                    </div>
 
                    {/* Number Node */}
-                   <div className="absolute left-0 md:static md:left-auto w-16 h-16 rounded-full bg-black border border-white/20 flex items-center justify-center text-sm font-light tracking-widest text-white/50 group-hover:border-white/50 group-hover:text-white group-hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all duration-500 z-10 shrink-0">
+                   <div className="absolute left-0 md:static md:left-auto w-16 h-16 rounded-full bg-black border-2 border-white/10 flex items-center justify-center text-sm font-light tracking-widest text-white/50 group-hover:border-white/50 group-hover:text-white group-hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all duration-500 z-10 shrink-0">
                      0{step.number}
                    </div>
 
@@ -223,7 +223,7 @@ export default function Landing() {
 
              <div className="flex animate-[marquee_40s_linear_infinite] group-hover:[animation-play-state:paused] w-max">
                 {[...useCases, ...useCases].map((useCase, idx) => (
-                  <div key={idx} className="w-64 md:w-80 mx-3 md:mx-4 p-6 md:p-8 rounded-2xl border border-white/5 bg-white/[0.02] flex flex-col gap-3 shrink-0 hover:bg-white/[0.04] transition-colors cursor-default">
+                  <div key={idx} className="w-64 md:w-80 mx-3 md:mx-4 p-6 md:p-8 rounded-2xl border-2 border-white/5 bg-white/2 flex flex-col gap-3 shrink-0 hover:bg-white/[0.04] transition-colors cursor-default">
                      <p className="text-white uppercase tracking-widest text-xs font-medium">{useCase.role}</p>
                      <p className="text-white/40 text-xs md:text-sm font-light leading-relaxed">{useCase.desc}</p>
                   </div>
@@ -237,12 +237,12 @@ export default function Landing() {
           id="pricing"
           className="w-full max-w-6xl mx-auto px-4 py-12 md:py-24 relative z-20"
         >
-          <div className="relative group rounded-2xl md:rounded-4xl overflow-hidden bg-[#050505] border border-white/5 shadow-2xl transition-all duration-500 hover:border-white/10">
+          <div className="relative group rounded-2xl md:rounded-4xl overflow-hidden bg-[#050505] border-2 border-white/5 shadow-2xl transition-all duration-500 hover:border-white/10">
             {/* Animated Grid Background */}
             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_0%,#000_70%,transparent_100%)] opacity-20"></div>
             
             {/* Subtle Simple Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/[0.03] rounded-full blur-3xl pointer-events-none transition-opacity duration-500 group-hover:bg-white/5"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/3 rounded-full blur-3xl pointer-events-none transition-opacity duration-500 group-hover:bg-white/5"></div>
 
             <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between px-8 py-12 md:p-16 gap-16">
               {/* Left Content */}
@@ -278,7 +278,7 @@ export default function Landing() {
                   
                   <Link
                     href="#how-it-works"
-                    className="inline-flex w-full sm:w-auto h-10 md:h-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-8 text-sm font-medium text-white transition-all hover:bg-white/[0.08]"
+                    className="inline-flex w-full sm:w-auto h-10 md:h-12 items-center justify-center rounded-full border-2 border-white/2 bg-white/3 px-8 text-sm font-medium text-white transition-all hover:bg-white/[0.08]"
                   >
                     Book a Demo
                   </Link>
@@ -300,28 +300,45 @@ export default function Landing() {
               {/* Right Content - Visual */}
               <div className="flex-1 w-full relative hidden md:block">
                 <div className="absolute inset-0 bg-white/[0.03] blur-3xl rounded-full"></div>
-                <div className="relative rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl p-6 shadow-2xl overflow-hidden group-hover:-translate-y-2 transition-transform duration-700">
-                   {/* Window Controls */}
-                   <div className="flex items-center gap-2 mb-6 border-b border-white/5 pb-4">
-                     <div className="w-3 h-3 rounded-full bg-white/20"></div>
-                     <div className="w-3 h-3 rounded-full bg-white/20"></div>
-                     <div className="w-3 h-3 rounded-full bg-white/20"></div>
-                     <div className="ml-4 text-[10px] text-white/30 font-mono tracking-widest uppercase">agent-config.ts</div>
-                   </div>
-                   
-                   {/* Mock Code */}
-                   <div className="font-mono text-xs md:text-sm text-white/70 space-y-3 leading-loose">
-                      <p><span className="text-purple-400">import</span> {`{ Agent }`} <span className="text-purple-400">from</span> <span className="text-emerald-400">'@mono/sdk'</span>;</p>
-                      <br/>
-                      <p><span className="text-purple-400">const</span> <span className="text-blue-400">supportAgent</span> = <span className="text-purple-400">new</span> <span className="text-yellow-200">Agent</span>({`{`}</p>
-                      <p className="pl-4"><span className="text-white/50">name:</span> <span className="text-emerald-400">'Customer Support'</span>,</p>
-                      <p className="pl-4"><span className="text-white/50">model:</span> <span className="text-emerald-400">'gemini-3.5-pro'</span>,</p>
-                      <p className="pl-4"><span className="text-white/50">tools:</span> [zendesk, confluence],</p>
-                      <p className="pl-4"><span className="text-white/50">instructions:</span> <span className="text-emerald-400">'Resolve tier 1 tickets automatically.'</span></p>
-                      <p>{`});`}</p>
-                      <br/>
-                      <p><span className="text-blue-400">supportAgent</span>.<span className="text-yellow-200">deploy</span>();</p>
-                   </div>
+                <div className="relative rounded-2xl border-2 border-white/5 bg-black/60 backdrop-blur-xl p-6 shadow-2xl overflow-hidden group-hover:-translate-y-2 transition-transform duration-700">
+                    {/* Agent UI Mockup */}
+                    <div className="flex items-center justify-between mb-6 border-b border-white/5 pb-6">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-full bg-emerald-500/20 border-2 border-emerald-500/10 flex items-center justify-center">
+                          <Bot className="w-6 h-6 text-emerald-400" />
+                        </div>
+                        <div>
+                          <div className="text-white font-medium mb-1 tracking-wide">Support Agent</div>
+                          <div className="text-xs text-emerald-400 flex items-center gap-2">
+                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></div>
+                            Online & Active
+                          </div>
+                        </div>
+                      </div>
+                      <div className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] text-white/50 tracking-widest uppercase">
+                        Mono UI
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      {/* User Message */}
+                      <div className="flex gap-4">
+                        <div className="w-8 h-8 rounded-full bg-white/5 border-2 border-white/5 shrink-0"></div>
+                        <div className="bg-white/5 border-2 border-white/5 rounded-2xl rounded-tl-none p-4 text-sm text-white/70 max-w-[85%] font-light leading-relaxed">
+                          Hey! I need help resetting my password and accessing my billing history.
+                        </div>
+                      </div>
+                      
+                      {/* Agent Message */}
+                      <div className="flex gap-4 flex-row-reverse">
+                        <div className="w-8 h-8 rounded-full bg-emerald-500/20 border-2 border-emerald-500/10 shrink-0 flex items-center justify-center">
+                          <Bot className="w-4 h-4 text-emerald-400" />
+                        </div>
+                        <div className="bg-emerald-500/8 border-2 border-emerald-500/10 rounded-2xl rounded-tr-none p-4 text-sm text-emerald-50 max-w-[85%] font-light leading-relaxed">
+                          I can help with that. I've sent a password reset link to your email. I'm also pulling up your billing history now...
+                        </div>
+                      </div>
+                    </div>
                 </div>
               </div>
             </div>
