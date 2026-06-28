@@ -27,13 +27,7 @@ const MockDashboard = () => {
                             <span className="text-white font-semibold tracking-wide">Mono</span>
                         </div>
 
-                        {/* Navigation */}
-                        <div className="px-1 mb-6">
-                            <div className="flex items-center space-x-3 px-3 py-2.5 bg-white/10 rounded-xl text-white shadow-sm">
-                                <svg className="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
-                                <span className="text-sm font-medium">Home</span>
-                            </div>
-                        </div>
+
 
                         {/* Agents Section */}
                         <div className="mb-6 px-1">
@@ -48,14 +42,14 @@ const MockDashboard = () => {
                                 </div>
                                 <div className="flex items-center justify-between px-3 py-2 text-white/60 hover:text-white hover:bg-white/5 rounded-lg cursor-pointer transition-colors">
                                     <div className="flex items-center space-x-3">
-                                        <div className="size-5 rounded bg-blue-500/20 text-blue-400 flex items-center justify-center text-[10px]">🤖</div>
+                                        <div className="size-5 rounded bg-blue-500/20 text-blue-400/30 flex items-center justify-center text-[10px]"></div>
                                         <span className="text-sm">Coding Agent</span>
                                     </div>
                                     <span className="text-xs text-white/20">2</span>
                                 </div>
                                 <div className="flex items-center justify-between px-3 py-2 text-white/60 hover:text-white hover:bg-white/5 rounded-lg cursor-pointer transition-colors">
                                     <div className="flex items-center space-x-3">
-                                        <div className="size-5 rounded bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px]">👽</div>
+                                        <div className="size-5 rounded bg-emerald-500/20 text-emerald-400/30 flex items-center justify-center text-[10px]"></div>
                                         <span className="text-sm">Research Agent</span>
                                     </div>
                                     <span className="text-xs text-white/20">1</span>
@@ -97,7 +91,7 @@ const MockDashboard = () => {
                     </div>
 
                     {/* Main Content Area */}
-                    <div className="flex-1 p-6 md:p-8 bg-[#0a0a0a] flex flex-col justify-items items-center relative overflow-hidden">
+                    <div className="flex-1 p-6 md:p-8 bg-[#0D0F12] flex flex-col items-center justify-center relative overflow-hidden select-none">
                         {/* Top Nav (Mobile menu / Profile right) */}
                         <div className="w-full flex justify-between md:justify-end mb-8 absolute top-4 right-4">
                             <div className="md:hidden size-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/70">
@@ -108,56 +102,53 @@ const MockDashboard = () => {
                             </div>
                         </div>
 
-                        {/* Center Content */}
-                        <div className="flex-1 flex flex-col items-center justify-center -mt-16 absolute top-32"> 
-                            <h1 className="text-4xl font-bold text-white mb-6 tracking-tight">Good afternoon, Jace</h1>
-                            <p className="text-[#8e95a3] text-center text-sm max-w-lg leading-relaxed mb-16">
-                                Choose an agent or ask Mono to pick the best companion for your task.
-                            </p>
-
-                            {/* Quick Start */}
-                            <div className="w-full max-w-3xl px-4 md:px-0">
-                                <div className="flex justify-between items-center mb-6">
-                                    <span className="text-[10px] font-bold text-white/30 tracking-wider">QUICK START WITH AGENTS</span>
-                                    <span className="text-[10px] font-medium cursor-pointer transition-colors">View all</span>
+                        {/* Centered Content: Pill Input and Quick Start */}
+                        <div className="flex flex-col items-center justify-center w-full max-w-xl z-10">
+                            {/* Centered Pill Input */}
+                            <div className="w-full max-w-md relative border border-white/5 backdrop-blur-md rounded-full bg-white/2 p-2 flex items-center justify-between mb-8 shadow-2xl">
+                                <span className="text-white/30 text-sm select-none ml-3">Message Mono or type prompt...</span>
+                                <div className="size-8 rounded-full bg-white/5 flex items-center justify-center text-white/40">
+                                    <svg className="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                                    </svg>
                                 </div>
-                                <div className="flex justify-center space-x-4 md:space-x-6">
+                            </div>
+
+                            {/* Quick Start Section */}
+                            <div className="w-full max-w-md flex flex-col items-center">
+                                <div className="flex items-center justify-between w-full mb-5 px-2">
+                                    <h3 className="text-[10px] font-bold uppercase tracking-wider text-white/30">Quick start with agents</h3>
+                                </div>
+
+                                <div className="flex flex-wrap items-center justify-center gap-4 w-full">
                                     {/* Agent Card 1 */}
-                                    <div className="w-32 h-32 rounded-3xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] flex flex-col items-center justify-center cursor-pointer transition-colors">
-                                        <div className="size-9 rounded-full bg-black mb-4 flex items-center justify-center text-white/50 text-xl font-light shadow-xl border border-white/5">+</div>
-                                        <span className="text-white font-medium text-sm">Coding Agent</span>
-                                        <span className="text-white/30 text-xs mt-1">2 chats</span>
+                                    <div className="group relative flex flex-col items-center justify-center w-[130px] p-5 rounded-2xl border border-white/5 bg-white/[0.01] hover:border-white/10 hover:bg-white/[0.02] text-center transition-all duration-300 hover:scale-[1.03] shadow-lg shadow-black/25 cursor-pointer">
+                                        <div className="relative mb-3.5">
+                                            <div className="size-11 rounded-full bg-blue-500/20 text-blue-400/30 flex items-center justify-center text-lg border border-white/5"></div>
+                                            <div className="absolute -bottom-1 -right-1 size-4.5 rounded-full border border-white/5 bg-black flex items-center justify-center">
+                                                <span className="text-white/60 text-[8px] font-bold">+</span>
+                                            </div>
+                                        </div>
+                                        <span className="text-xs font-bold text-white/90 truncate w-full group-hover:text-white transition-colors">Coding Agent</span>
+                                        <span className="text-[10px] text-white/40 mt-1 font-medium">2 chats</span>
                                     </div>
-                                    {/* Agent Card 2 */}
-                                    <div className="w-32 h-32 rounded-3xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] flex flex-col items-center justify-center cursor-pointer transition-colors">
-                                        <div className="size-9 rounded-full bg-black mb-4 flex items-center justify-center text-white/50 text-xl font-light shadow-xl border border-white/5">+</div>
-                                        <span className="text-white font-medium text-sm">Research Agent</span>
-                                        <span className="text-white/30 text-xs mt-1">1 chat</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        {/* Bottom Input Area */}
-                        <div className="absolute bottom-2 w-full max-w-3xl mx-auto">
-                            <div className="relative rounded-2xl border border-white/5 bg-muted/30 p-4 flex flex-col shadow-2xl">
-                                <input
-                                    type="text"
-                                    disabled
-                                    placeholder="Message Mono or type prompt..."
-                                    className="w-full border-none text-white placeholder-white/30 outline-none text-sm mb-4 px-2"
-                                />
-                                <div className="flex justify-between items-center">
-                                    <div className="px-3 py-1.5 rounded-lg border border-white/2 bg-white/3 text-xs text-white/60 flex items-center space-x-2 cursor-pointer hover:bg-white/[0.05] transition-colors">
-                                        <span>Gemini Assistant</span>
-                                        <span className="text-[10px] opacity-50 ml-1">▼</span>
-                                    </div>
-                                    <div className="size-7 rounded-xl bg-white/5 hover:bg-white/10 cursor-pointer flex items-center justify-center text-white/50 transition-colors">
-                                        <svg className="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                                    {/* Agent Card 2 */}
+                                    <div className="group relative flex flex-col items-center justify-center w-[130px] p-5 rounded-2xl border border-white/5 bg-white/[0.01] hover:border-white/10 hover:bg-white/[0.02] text-center transition-all duration-300 hover:scale-[1.03] shadow-lg shadow-black/25 cursor-pointer">
+                                        <div className="relative mb-3.5">
+                                            <div className="size-11 rounded-full bg-emerald-500/20 text-emerald-400/30 flex items-center justify-center text-lg border border-white/5"></div>
+                                            <div className="absolute -bottom-1 -right-1 size-4.5 rounded-full border border-white/5 bg-black flex items-center justify-center">
+                                                <span className="text-white/60 text-[8px] font-bold">+</span>
+                                            </div>
+                                        </div>
+                                        <span className="text-xs font-bold text-white/90 truncate w-full group-hover:text-white transition-colors">Research Agent</span>
+                                        <span className="text-[10px] text-white/40 mt-1 font-medium">1 chat</span>
                                     </div>
                                 </div>
                             </div>
-                            <p className="text-center text-[10px] text-white/30 mt-4 mb-2">
+
+                            {/* Footer Warning Notice */}
+                            <p className="mt-8 text-center text-[10px] text-white/20 tracking-wide select-none">
                                 Mono can make mistakes. Please check sensitive information.
                             </p>
                         </div>

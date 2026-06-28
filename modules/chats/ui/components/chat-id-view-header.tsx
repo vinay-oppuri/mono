@@ -28,7 +28,7 @@ export const ChatIdViewHeader = ({ chatId, chatTitle, onEdit, onRemove }: Props)
                 <BreadcrumbList>
                     <BreadcrumbItem>
                         <BreadcrumbLink asChild className="font-medium text-left">
-                            <Link href="/dashboard/chats">My Chats</Link>
+                            <Link href="/dashboard">Home</Link>
                         </BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbSeparator className="text-foreground text-xl font-medium [&>svg]:size-4">
@@ -36,7 +36,7 @@ export const ChatIdViewHeader = ({ chatId, chatTitle, onEdit, onRemove }: Props)
                     </BreadcrumbSeparator>
                     <BreadcrumbItem>
                         <BreadcrumbLink asChild className="font-medium text-left text-foreground">
-                            <Link href={`/dashboard/chats/${chatId}`}>{chatTitle}</Link>
+                            <Link href={`/dashboard?chatId=${chatId}`}>{chatTitle}</Link>
                         </BreadcrumbLink>
                     </BreadcrumbItem>
                 </BreadcrumbList>

@@ -88,7 +88,7 @@ export const AgentDetailDialog = ({
         toast.success("Agent deleted successfully")
         await queryClient.invalidateQueries(trpc.agents.getMany.queryOptions({}))
         onOpenChange(false)
-        router.push("/dashboard/agents")
+        router.push("/dashboard")
       },
       onError: (err) => {
         toast.error(err.message || "Failed to delete agent")
@@ -101,7 +101,7 @@ export const AgentDetailDialog = ({
       onSuccess: (chat) => {
         toast.success("Started conversation!")
         onOpenChange(false)
-        router.push(`/dashboard/chats/${chat.id}`)
+        router.push(`/dashboard?chatId=${chat.id}`)
       },
       onError: (err) => {
         toast.error(err.message || "Failed to start conversation")
@@ -138,20 +138,20 @@ export const AgentDetailDialog = ({
     <>
       <DeleteConfirmation />
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="max-w-5xl! w-full! p-0 overflow-hidden bg-[#14171f] border border-white/[0.08] rounded-2xl shadow-2xl flex flex-col md:flex-row h-[80vh] max-h-[600px]">
+        <DialogContent className="max-w-5xl! w-full! p-0 overflow-hidden bg-background border border-border backdrop-blur-2xl rounded-2xl shadow-2xl flex flex-col md:flex-row h-[80vh] max-h-[600px] text-foreground">
           
           {/* ── Left Column: Chat History ── */}
-          <div className="flex-1 flex flex-col border-r border-white/[0.08] min-h-0 bg-[#0d0f12]/40">
-            <div className="p-5 border-b border-white/[0.08] flex items-center justify-between">
+          <div className="flex-1 flex flex-col border-r border-border min-h-0 bg-muted/10">
+            <div className="p-5 border-b border-border flex items-center justify-between">
               <div>
-                <h4 className="text-sm font-bold text-white uppercase tracking-wider">Chat History</h4>
-                <p className="text-[11px] text-[#8892b0] mt-0.5">Conversations with this agent</p>
+                <h4 className="text-sm font-bold text-foreground uppercase tracking-wider">Chat History</h4>
+                <p className="text-[11px] text-muted-foreground mt-0.5">Conversations with this agent</p>
               </div>
               <Button 
                 size="sm" 
                 variant="outline" 
                 onClick={handleStartChat}
-                className="h-8 gap-1 text-xs border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.06] text-[#8892b0] hover:text-white"
+                className="h-8 gap-1 text-xs border-border bg-muted/20 hover:bg-muted/40 text-muted-foreground hover:text-foreground"
               >
                 <Plus className="size-3" />
                 <span>New Chat</span>
@@ -162,8 +162,8 @@ export const AgentDetailDialog = ({
             <div className="flex-1 overflow-y-auto p-4 space-y-2 scrollbar-none">
               {chatsQuery.isLoading ? (
                 <div className="flex flex-col items-center justify-center h-full gap-2">
-                  <Loader2 className="size-5 text-[#8b5cf6] animate-spin" />
-                  <span className="text-xs text-[#8892b0]">Loading history...</span>
+                  <Loader2 className="size-5 text-primary animate-spin" />
+                  <span className="text-xs text-muted-foreground">Loading history...</span>
                 </div>
               ) : chats.length > 0 ? (
                 chats.map((chat) => (
@@ -171,18 +171,18 @@ export const AgentDetailDialog = ({
                     key={chat.id}
                     onClick={() => {
                       onOpenChange(false)
-                      router.push(`/dashboard/chats/${chat.id}`)
+                      router.push(`/dashboard?chatId=${chat.id}`)
                     }}
-                    className="w-full text-left p-3 rounded-xl border border-white/[0.04] bg-white/[0.01] hover:bg-white/[0.03] hover:border-white/[0.08] transition-all flex items-center gap-3 group"
+                    className="w-full text-left p-3 rounded-xl border border-border bg-muted/5 hover:bg-muted/20 transition-all flex items-center gap-3 group"
                   >
-                    <div className="size-8 rounded-full border border-white/[0.06] bg-white/[0.02] flex items-center justify-center shrink-0">
-                      <MessageSquare className="size-4 text-[#8b5cf6]" />
+                    <div className="size-8 rounded-full border border-border bg-muted/10 flex items-center justify-center shrink-0">
+                      <MessageSquare className="size-4 text-primary" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-xs font-semibold text-white/90 truncate group-hover:text-white transition-colors capitalize">
+                      <p className="text-xs font-semibold text-foreground/90 truncate group-hover:text-foreground transition-colors capitalize">
                         {chat.title}
                       </p>
-                      <p className="text-[10px] text-[#8892b0]/70 mt-0.5">
+                      <p className="text-[10px] text-muted-foreground/70 mt-0.5">
                         {chat.messageCount} messages
                       </p>
                     </div>
@@ -190,13 +190,13 @@ export const AgentDetailDialog = ({
                 ))
               ) : (
                 <div className="flex flex-col items-center justify-center h-full text-center p-4">
-                  <MessageSquare className="size-7 text-[#8892b0]/30 mb-2" />
-                  <p className="text-xs text-[#8892b0]/80">No chats yet</p>
+                  <MessageSquare className="size-7 text-muted-foreground/30 mb-2" />
+                  <p className="text-xs text-muted-foreground/80">No chats yet</p>
                   <Button 
                     variant="link" 
                     size="sm" 
                     onClick={handleStartChat}
-                    className="text-xs text-[#8b5cf6] font-semibold mt-1"
+                    className="text-xs text-primary font-semibold mt-1"
                   >
                     Start a thread now
                   </Button>
@@ -214,12 +214,12 @@ export const AgentDetailDialog = ({
                     <GeneratedAvatar 
                       seed={agent.name} 
                       variant="botttsNeutral" 
-                      className="size-9 border border-white/[0.06] rounded-full p-0.5" 
+                      className="size-9 border border-border rounded-full p-0.5 bg-muted/10" 
                     />
                   )}
                   <div>
-                    <DialogTitle className="text-base font-bold text-white">Agent Settings</DialogTitle>
-                    <DialogDescription className="text-xs text-[#8892b0]">
+                    <DialogTitle className="text-base font-bold text-foreground">Agent Settings</DialogTitle>
+                    <DialogDescription className="text-xs text-muted-foreground">
                       Configure rules, instructions, and name.
                     </DialogDescription>
                   </div>
@@ -229,29 +229,29 @@ export const AgentDetailDialog = ({
               {/* Form Input fields */}
               <div className="space-y-4">
                 <div className="space-y-1.5">
-                  <label className="text-[11px] font-bold uppercase tracking-wider text-[#8892b0]">Agent Name</label>
+                  <label className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">Agent Name</label>
                   <Input
                     placeholder="e.g. Code Wizard"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="bg-white/[0.02] border-white/[0.08] hover:border-white/[0.12] focus:border-[#8b5cf6]/60 text-white rounded-xl h-10 text-xs"
+                    className="bg-muted/5 border-border hover:border-border/80 focus-visible:ring-primary text-foreground rounded-xl h-10 text-xs"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-[11px] font-bold uppercase tracking-wider text-[#8892b0]">Instructions</label>
+                  <label className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">Instructions</label>
                   <Textarea
                     placeholder="Describe how this agent should behave..."
                     value={instructions}
                     onChange={(e) => setInstructions(e.target.value)}
-                    className="bg-white/[0.02] border-white/[0.08] hover:border-white/[0.12] focus:border-[#8b5cf6]/60 text-white rounded-xl min-h-[140px] text-xs resize-none"
+                    className="bg-muted/5 border-border hover:border-border/80 focus-visible:ring-primary text-foreground rounded-xl min-h-[140px] text-xs resize-none"
                   />
                 </div>
               </div>
             </div>
 
             {/* Form Footer Action Buttons */}
-            <div className="flex items-center justify-end gap-3 border-t border-white/[0.06] pt-4 mt-6">
+            <div className="flex items-center justify-end gap-3 border-t border-border pt-4 mt-6">
               {/* Delete Agent on right side itself */}
               <Button
                 variant="ghost"
@@ -272,7 +272,7 @@ export const AgentDetailDialog = ({
               <Button
                 onClick={handleSaveChanges}
                 disabled={updateAgentMutation.isPending || !name.trim()}
-                className="h-9 px-4 rounded-lg bg-[#8b5cf6] hover:bg-[#7c3aed] text-white font-semibold text-xs gap-1.5 cursor-pointer shadow-lg shadow-[#8b5cf6]/20"
+                className="h-9! px-4 rounded-lg bg-ring hover:bg-ring/90 text-white font-semibold text-xs gap-1.5 cursor-pointer shadow-md shadow-[#8b5cf6]/20"
               >
                 {updateAgentMutation.isPending ? (
                   <Loader2 className="size-3.5 animate-spin" />

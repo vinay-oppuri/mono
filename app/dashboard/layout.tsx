@@ -1,7 +1,7 @@
 import { SidebarProvider } from "@/components/ui/sidebar"
-import BottomNav from "@/modules/dashboard/ui/components/dashboard-bottom-nav"
 import { DashboardNavbar } from "@/modules/dashboard/ui/components/dashboard-navbar"
 import { DashboardSidebar } from "@/modules/dashboard/ui/components/dashboard-sidebar"
+import { Suspense } from "react"
 
 interface Props {
     children: React.ReactNode
@@ -10,13 +10,14 @@ interface Props {
 const Layout = ({ children }: Props) => {
     return (
         <SidebarProvider>
-            <DashboardSidebar/>
-            <main className="flex h-screen w-screen flex-col overflow-hidden bg-[#0D0F12]">
-                <DashboardNavbar/>
-                <div className="relative min-h-0 flex-1">
+            <Suspense fallback={<div className="w-[260px] shrink-0 border-r border-sidebar-border bg-sidebar" />}>
+                <DashboardSidebar />
+            </Suspense>
+            <main className="flex h-screen w-screen flex-col overflow-hidden bg-background">
+                <DashboardNavbar />
+                <div className="relative min-h-0 flex-1 flex flex-col">
                     {children}
                 </div>
-                <BottomNav/>
             </main>
         </SidebarProvider>
     )

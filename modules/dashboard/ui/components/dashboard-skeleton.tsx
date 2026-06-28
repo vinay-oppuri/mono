@@ -2,31 +2,42 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 export const DashboardSkeleton = () => {
   return (
-    <div className="flex h-full flex-col bg-[#0D0F12]">
-      <div className="flex-1 overflow-y-auto">
-        <div className="mx-auto flex w-full max-w-3xl flex-col items-center px-4 pb-52 pt-20 md:px-6">
-          {/* Greeting skeleton */}
-          <div className="mb-12 flex flex-col items-center gap-4 w-full">
-            <Skeleton className="h-6 w-40 rounded-full bg-white/[0.06]" />
-            <Skeleton className="h-12 w-72 md:w-96 bg-white/[0.06]" />
-            <Skeleton className="h-5 w-52 bg-white/[0.04]" />
-          </div>
-          {/* Prompt cards skeleton */}
-          <div className="grid w-full grid-cols-2 gap-3">
-            {[...Array(4)].map((_, i) => (
-              <div key={i} className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
-                <Skeleton className="h-4 w-20 mb-2 bg-white/[0.06]" />
-                <Skeleton className="h-3 w-32 bg-white/[0.04]" />
+    <div className="relative flex h-full flex-col bg-background text-foreground overflow-hidden select-none">
+      <div className="flex-1 flex flex-col items-center justify-center px-4 md:px-6 w-full max-w-xl mx-auto z-10">
+        
+        {/* Chat input skeleton - centered, pill shape */}
+        <div className="w-full relative border border-border backdrop-blur-md rounded-full bg-card/80 p-4 flex items-center justify-between h-[56px] mb-8">
+          <Skeleton className="h-4 w-48 bg-muted/40 ml-2" />
+          <Skeleton className="size-9 rounded-full bg-muted/60 shrink-0" />
+        </div>
+
+        {/* Quick start with agents title */}
+        <div className="flex items-center justify-between w-full max-w-xl mb-5 px-2">
+          <Skeleton className="h-3 w-32 bg-muted/40" />
+        </div>
+
+        {/* 4 Agent cards */}
+        <div className="flex flex-wrap items-center justify-center gap-4 max-w-2xl w-full">
+          {[...Array(4)].map((_, i) => (
+            <div
+              key={i}
+              className="flex flex-col items-center justify-center w-[135px] p-5 rounded-2xl border border-border bg-card text-center shadow-lg shadow-black/25"
+            >
+              <div className="relative mb-3.5">
+                <Skeleton className="size-12 rounded-full bg-muted/60" />
+                <div className="absolute -bottom-1 -right-1 size-5 rounded-full border border-border bg-card flex items-center justify-center">
+                  <Skeleton className="size-2.5 rounded-full bg-muted/40" />
+                </div>
               </div>
-            ))}
-          </div>
+              <Skeleton className="h-3 w-16 bg-muted/60 mb-2" />
+              <Skeleton className="h-2 w-10 bg-muted/40" />
+            </div>
+          ))}
         </div>
-      </div>
-      {/* Input area skeleton */}
-      <div className="absolute bottom-0 left-0 right-0 pb-6 pt-12 px-4">
-        <div className="mx-auto w-full max-w-3xl">
-          <Skeleton className="h-16 w-full rounded-2xl bg-white/[0.06]" />
-        </div>
+
+        {/* Footer warning skeleton */}
+        <Skeleton className="h-3 w-64 bg-muted/30 mt-8" />
+
       </div>
     </div>
   )

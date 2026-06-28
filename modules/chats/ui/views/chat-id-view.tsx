@@ -1,9 +1,9 @@
 "use client"
 
 import { FormEvent, useEffect, useRef, useState } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query"
-import { SendIcon, Sparkles, AlertCircle, RefreshCw, Clipboard, Check } from "lucide-react"
+import { Sparkles, AlertCircle, RefreshCw, Clipboard, Check } from "lucide-react"
 import Markdown from "react-markdown"
 import { toast } from "sonner"
 
@@ -17,6 +17,7 @@ import { useTRPC } from "@/trpc/client"
 import { ChatIdViewHeader } from "../components/chat-id-view-header"
 import { UpdateChatDialog } from "../components/update-chat-dialog"
 import { motion, AnimatePresence } from "framer-motion"
+import { ChatInput } from "@/components/chat-input"
 
 interface Props {
     chatId: string
@@ -70,9 +71,9 @@ export const ChatIdView = ({ chatId }: Props) => {
     const [message, setMessage] = useState("")
     const [updateChatDialogOpen, setUpdateChatDialogOpen] = useState(false)
     const bottomRef = useRef<HTMLDivElement>(null)
-    const textareaRef = useRef<HTMLTextAreaElement>(null)
 
     const router = useRouter()
+    const pathname = usePathname()
     const trpc = useTRPC()
     const queryClient = useQueryClient()
 
@@ -102,7 +103,11 @@ export const ChatIdView = ({ chatId }: Props) => {
         trpc.chats.remove.mutationOptions({
             onSuccess: async () => {
                 await queryClient.invalidateQueries(trpc.chats.getMany.queryOptions({}))
-                router.push("/dashboard/chats")
+                if (pathname.startsWith("/dashboard/chats")) {
+                    router.push("/dashboard/chats")
+                } else {
+                    router.push("/dashboard")
+                }
             },
             onError: (error) => {
                 toast.error(error.message)
@@ -115,20 +120,9 @@ export const ChatIdView = ({ chatId }: Props) => {
         bottomRef.current?.scrollIntoView({ behavior: "smooth" })
     }, [data.messages.length, sendMessage.isPending])
 
-    // Auto-resize textarea
-    useEffect(() => {
-        const el = textareaRef.current
-        if (!el) return
-        el.style.height = "auto"
-        el.style.height = Math.min(el.scrollHeight, 180) + "px"
-    }, [message])
-
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
-
+    const handleSend = () => {
         const content = message.trim()
         if (!content || sendMessage.isPending) return
-
         sendMessage.mutate({ chatId, content })
     }
 
@@ -147,7 +141,7 @@ export const ChatIdView = ({ chatId }: Props) => {
                 onOpenChange={setUpdateChatDialogOpen}
                 initialValues={data}
             />
-            <div className="flex-1 px-4 md:px-8 flex flex-col bg-[#0D0F12] min-h-0 relative select-none">
+            <div className="flex-1 px-4 md:px-8 flex flex-col bg-background text-foreground min-h-0 relative select-none">
                 <ChatIdViewHeader
                     chatId={chatId}
                     chatTitle={data.title}
@@ -162,13 +156,13 @@ export const ChatIdView = ({ chatId }: Props) => {
                         <div className="h-full min-h-[300px] flex flex-col items-center justify-center text-center gap-y-4 px-4">
                             <div className="relative">
                                 <GeneratedAvatar seed={data.agent?.name || "Gemini"} variant="botttsNeutral" className="size-16 border border-white/[0.06] rounded-full shadow-lg" />
-                                <div className="absolute -bottom-1 -right-1 size-5 rounded-full bg-[#161920] border border-white/[0.08] flex items-center justify-center">
-                                    <Sparkles className="size-2.5 text-[#8b5cf6] animate-pulse" />
+                                <div className="absolute -bottom-1 -right-1 size-5 rounded-full bg-card border border-border flex items-center justify-center">
+                                    <Sparkles className="size-2.5 text-primary animate-pulse" />
                                 </div>
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold text-white">Chat with {data.agent?.name || "Gemini Assistant"}</h3>
-                                <p className="text-sm text-[#8892b0] max-w-sm mt-1 leading-relaxed">
+                                <p className="text-sm text-muted-foreground max-w-sm mt-1 leading-relaxed">
                                     {data.agent?.instructions || "Ask anything. I am a helpful AI assistant."}
                                 </p>
                             </div>
@@ -180,10 +174,13 @@ export const ChatIdView = ({ chatId }: Props) => {
                             const isUser = item.role === "user"
 
                             return (
-                                <div
+                                <motion.div
                                     key={item.id}
+                                    initial={{ opacity: 0, y: 12 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.3, ease: "easeOut" }}
                                     className={cn(
-                                        "flex gap-x-4",
+                                        "flex gap-x-4 w-full",
                                         isUser ? "justify-end" : "justify-start"
                                     )}
                                 >
@@ -198,8 +195,8 @@ export const ChatIdView = ({ chatId }: Props) => {
                                         className={cn(
                                             "max-w-[85%] md:max-w-[75%] rounded-2xl px-4.5 py-3 text-[14.5px] leading-relaxed shadow-md",
                                             isUser
-                                                ? "bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 text-white rounded-tr-none"
-                                                : "text-[#d0d6e2]"
+                                                ? "bg-primary/10 border border-primary/20 text-foreground rounded-tr-none"
+                                                : "bg-muted/30 border border-border rounded-2xl rounded-tl-none text-foreground"
                                         )}
                                     >
                                         <Markdown
@@ -212,7 +209,7 @@ export const ChatIdView = ({ chatId }: Props) => {
                                                     const isInline = !className
                                                     if (isInline) {
                                                         return (
-                                                            <code className="rounded bg-[#181a23] border border-white/[0.06] px-1.5 py-0.5 text-xs text-rose-300 font-mono" {...props}>
+                                                            <code className="rounded bg-muted border border-border px-1.5 py-0.5 text-xs text-rose-400 dark:text-rose-300 font-mono" {...props}>
                                                                 {children}
                                                             </code>
                                                         )
@@ -225,66 +222,40 @@ export const ChatIdView = ({ chatId }: Props) => {
                                             {item.content}
                                         </Markdown>
                                     </div>
-                                </div>
+                                </motion.div>
                             )
                         })}
 
                         {sendMessage.isPending && (
-                            <div className="flex gap-x-4 justify-start">
+                            <motion.div
+                                initial={{ opacity: 0, y: 8 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="flex gap-x-4 justify-start"
+                            >
                                 <GeneratedAvatar seed={data.agent?.name || "Gemini"} variant="botttsNeutral" className="size-8 border border-white/[0.06] rounded-full animate-pulse" />
-                                <div className="bg-white/[0.02] border border-white/[0.05] rounded-2xl px-4.5 py-3 text-sm text-[#8892b0]/70 flex items-center gap-2">
+                                <div className="bg-muted/30 border border-border rounded-2xl px-4.5 py-3 text-sm text-muted-foreground flex items-center gap-2">
                                     <RefreshCw className="size-3.5 animate-spin text-[#8b5cf6]" />
                                     <span>Assistant is writing...</span>
                                 </div>
-                            </div>
+                            </motion.div>
                         )}
                         <div ref={bottomRef} />
                     </div>
                 </div>
 
                 {/* ── Fixed Bottom Message Input ── */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#0D0F12] via-[#0D0F12]/98 to-transparent pb-6 pt-16 px-4 z-20 select-none">
-                    <form onSubmit={handleSubmit} className="mx-auto w-full max-w-3xl">
-                        
-                        <div className="relative rounded-2xl border border-white/[0.08] bg-[#14171f]/80 backdrop-blur-md shadow-2xl shadow-black/40 transition-all duration-200 focus-within:border-white/[0.15] focus-within:shadow-[0_0_0_1px_rgba(139,92,246,0.2)]">
-                            <textarea
-                                ref={textareaRef}
-                                value={message}
-                                onChange={(event) => setMessage(event.target.value)}
-                                placeholder={`Message ${data.agent?.name || "Assistant"}...`}
-                                rows={1}
-                                className="w-full resize-none bg-transparent px-5 py-4 pr-14 text-white placeholder:text-[#8892b0]/50 focus:outline-none text-[15px] leading-relaxed min-h-[56px] max-h-[180px]"
-                                onKeyDown={(event) => {
-                                    if (event.key === "Enter" && !event.shiftKey) {
-                                        event.preventDefault()
-                                        event.currentTarget.form?.requestSubmit()
-                                    }
-                                }}
-                            />
-                            
-                            <div className="flex items-center justify-between px-3.5 pb-3">
-                                {/* Left: Active agent preview */}
-                                <div className="flex items-center gap-2 rounded-lg bg-white/[0.02] border border-white/[0.05] px-2.5 py-1 text-[11px] text-[#8892b0] select-none">
-                                    <GeneratedAvatar seed={data.agent?.name || "Gemini"} variant="botttsNeutral" className="size-3.5" />
-                                    <span className="font-semibold text-white/80">{data.agent?.name || "Gemini Assistant"}</span>
-                                </div>
-
-                                {/* Right: Send button */}
-                                <button
-                                    type="submit"
-                                    disabled={!message.trim() || sendMessage.isPending}
-                                    className={cn(
-                                        "flex items-center justify-center size-9 rounded-xl transition-all duration-150 shrink-0 cursor-pointer",
-                                        message.trim() && !sendMessage.isPending
-                                            ? "bg-gradient-to-br from-[#8b5cf6] to-[#10b981] text-white shadow-lg shadow-[#8b5cf6]/20 hover:brightness-110 active:scale-95"
-                                            : "bg-white/[0.03] text-[#8892b0]/30 cursor-not-allowed border border-white/[0.05]"
-                                    )}
-                                >
-                                    <SendIcon className="size-4" />
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background via-background/98 to-transparent pb-6 pt-16 px-4 z-20 select-none">
+                    <div className="mx-auto w-full max-w-3xl">
+                        <ChatInput
+                            value={message}
+                            onChange={setMessage}
+                            onSend={handleSend}
+                            placeholder={`Message ${data.agent?.name || "Assistant"}...`}
+                            selectedAgent={data.agent || { name: "Gemini Assistant" }}
+                            isPending={sendMessage.isPending}
+                        />
+                    </div>
                 </div>
             </div>
         </>

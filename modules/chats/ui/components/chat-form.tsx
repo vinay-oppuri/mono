@@ -34,7 +34,6 @@ interface ChatFormProps {
 
 export const ChatForm = ({ onSuccess, onCancel, initialValues }: ChatFormProps) => {
     const trpc = useTRPC()
-    const router = useRouter()
     const queryClient = useQueryClient()
 
     const [openNewAgentDialog, setOpenNewAgentDialog] = useState(false)

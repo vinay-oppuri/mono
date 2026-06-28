@@ -7,7 +7,11 @@ import { auth } from "@/lib/auth"
 import { headers } from "next/headers"
 import { redirect } from "next/navigation"
 
-export default async function Page() {
+interface Props {
+  searchParams: Promise<Record<string, string | string[] | undefined>>
+}
+
+export default async function Page({ searchParams }: Props) {
   const session = await auth.api.getSession({ headers: await headers() })
   if (!session) redirect("/sign-in")
 
@@ -15,6 +19,11 @@ export default async function Page() {
 
   await queryClient.prefetchQuery(trpc.chats.getMany.queryOptions({}))
   await queryClient.prefetchQuery(trpc.agents.getMany.queryOptions({}))
+
+  const { chatId } = await searchParams
+  if (typeof chatId === "string") {
+    await queryClient.prefetchQuery(trpc.chats.getOne.queryOptions({ id: chatId }))
+  }
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
