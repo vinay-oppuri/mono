@@ -4,7 +4,7 @@ import Image from "next/image"
 const MockDashboard = () => {
     return (
         <section className="hidden sm:block relative w-full max-w-6xl mx-auto px-4 py-20 z-20">
-            <div className="relative rounded-2xl border border-white/7 bg-black/50 backdrop-blur-3xl overflow-hidden shadow-white/5">
+            <div className="relative rounded-2xl md:rounded-4xl border border-white/7 bg-black/50 backdrop-blur-3xl overflow-hidden shadow-white/5">
                 {/* Top Bar */}
                 <div className="flex items-center px-6 py-4 border-b border-white/5 bg-white/[0.02]">
                     <div className="flex space-x-2">

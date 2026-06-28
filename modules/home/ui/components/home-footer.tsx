@@ -8,25 +8,25 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 mb-12">
                     <div className="col-span-1 md:col-span-2">
                         <Link href="/" className="inline-block mb-4">
-                            <span className="text-foreground font-mono font-bold tracking-wider text-lg">MONO WORKSPACE</span>
+                            <span className="text-white font-mono font-bold tracking-wider text-lg">MONO WORKSPACE</span>
                         </Link>
-                        <p className="text-sm text-muted-foreground/80 mb-6 max-w-sm">
+                        <p className="text-sm text-white/40 mb-6 max-w-sm">
                             Building the next generation of AI-powered tools for developers and creators.
                         </p>
                         <div className="flex items-center space-x-4">
-                            <Link href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground/60 hover:text-foreground">
+                            <Link href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white">
                                 <Github size={20} />
                                 <span className="sr-only">GitHub</span>
                             </Link>
-                            <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground/60 hover:text-foreground">
+                            <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white">
                                 <Twitter size={20} />
                                 <span className="sr-only">Twitter</span>
                             </Link>
-                            <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground/60 hover:text-foreground">
+                            <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white">
                                 <Linkedin size={20} />
                                 <span className="sr-only">LinkedIn</span>
                             </Link>
-                            <Link href="mailto:hello@monoworkspace.com" className="text-muted-foreground/60 hover:text-foreground">
+                            <Link href="mailto:hello@monoworkspace.com" className="text-white/60 hover:text-white">
                                 <Mail size={20} />
                                 <span className="sr-only">Email</span>
                             </Link>
@@ -34,34 +34,34 @@ const Footer = () => {
                     </div>
 
                     <div>
-                        <h3 className="text-foreground font-medium mb-4 text-sm tracking-wide">Resources</h3>
+                        <h3 className="text-white/80 font-medium mb-4 text-sm tracking-wide">Resources</h3>
                         <ul className="space-y-3 text-sm">
-                            <li><Link href="/docs" className="hover:text-muted-foreground text-muted-foreground/80">Documentation</Link></li>
-                            <li><Link href="/blog" className="hover:text-muted-foreground text-muted-foreground/80">Blog</Link></li>
-                            <li><Link href="/showcase" className="hover:text-muted-foreground text-muted-foreground/80">Showcase</Link></li>
-                            <li><Link href="/pricing" className="hover:text-muted-foreground text-muted-foreground/80">Pricing</Link></li>
+                            <li><Link href="/docs" className="hover:text-white text-white/40">Documentation</Link></li>
+                            <li><Link href="/blog" className="hover:text-white text-white/40">Blog</Link></li>
+                            <li><Link href="/showcase" className="hover:text-white text-white/40">Showcase</Link></li>
+                            <li><Link href="/pricing" className="hover:text-white text-white/40">Pricing</Link></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h3 className="text-foreground font-medium mb-4 text-sm tracking-wide">Company</h3>
+                        <h3 className="text-white/80 font-medium mb-4 text-sm tracking-wide">Company</h3>
                         <ul className="space-y-3 text-sm">
-                            <li><Link href="/about" className="hover:text-muted-foreground text-muted-foreground/80">About Us</Link></li>
-                            <li><Link href="/careers" className="hover:text-muted-foreground text-muted-foreground/80">Careers</Link></li>
-                            <li><Link href="/privacy" className="hover:text-muted-foreground text-muted-foreground/80">Privacy Policy</Link></li>
-                            <li><Link href="/terms" className="hover:text-muted-foreground text-muted-foreground/80">Terms of Service</Link></li>
+                            <li><Link href="/about" className="hover:text-white text-white/40">About Us</Link></li>
+                            <li><Link href="/careers" className="hover:text-white text-white/40">Careers</Link></li>
+                            <li><Link href="/privacy" className="hover:text-white text-white/40">Privacy Policy</Link></li>
+                            <li><Link href="/terms" className="hover:text-white text-white/40">Terms of Service</Link></li>
                         </ul>
                     </div>
                 </div>
 
                 <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-[11px] text-muted-foreground/50 tracking-wider font-mono uppercase">
+                    <p className="text-[11px] text-white/40 tracking-wider font-mono uppercase">
                         &copy; {new Date().getFullYear()} MONO WORKSPACE. ALL RIGHTS RESERVED.
                     </p>
-                    <div className="flex space-x-6 text-[11px] text-muted-foreground/50 tracking-wider font-mono uppercase">
-                        <Link href="/privacy" className="hover:text-foreground">Privacy</Link>
-                        <Link href="/terms" className="hover:text-foreground">Terms</Link>
-                        <Link href="/cookies" className="hover:text-foreground">Cookies</Link>
+                    <div className="flex space-x-6 text-[11px] text-white/40 tracking-wider font-mono uppercase">
+                        <Link href="/privacy" className="hover:text-white text-white/40">Privacy</Link>
+                        <Link href="/terms" className="hover:text-white text-white/40">Terms</Link>
+                        <Link href="/cookies" className="hover:text-white text-white/40">Cookies</Link>
                     </div>
                 </div>
             </div>

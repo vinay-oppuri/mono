@@ -22,9 +22,9 @@ const Navbar = () => {
           <button
             aria-label="Toggle Menu"
             onClick={() => setIsOpen(!isOpen)}
-            className="flex items-center justify-center text-white hover:text-white/70 ml-2"
+            className="flex items-center justify-center text-white hover:text-white/70 ml-2 tracking-[0.2em] uppercase"
           >
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
+            {isOpen ? <X className="w-4 md:w-6 h-4 md:h-6" /> : <Menu className="w-4 md:w-6 h-4 md:h-6" />} <span className="ml-2 text-xs md:text-sm">MENU</span>
           </button>
 
           {/* Action (Right) */}
@@ -38,7 +38,7 @@ const Navbar = () => {
               hover:bg-white/90
               text-black
               text-xs
-              tracking-[0.2em]
+              tracking-wide md:tracking-[0.2em] 
               uppercase
               font-bold
               flex
@@ -64,16 +64,16 @@ const Navbar = () => {
           <div
             className="
               fixed
-              top-24
-              left-4
+              top-20 md:top-22
+              left-4 md:left-32
               w-64
               z-50 
-              text-sm
+              text-xs md:text-sm
             "
           >
             <div
               className="
-                rounded-[2rem]
+                rounded-2xl md:rounded-4xl
                 border
                 border-white/10
                 bg-black/80
@@ -82,7 +82,7 @@ const Navbar = () => {
                 shadow-2xl
               "
             >
-              <div className="p-4 flex flex-col gap-2">
+              <div className="p-2 md:p-4 flex flex-col gap-1 md:gap-2">
                 {navLinks.map((item) => (
                   <Link
                     key={item.label}

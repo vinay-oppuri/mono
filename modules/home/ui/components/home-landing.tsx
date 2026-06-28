@@ -315,7 +315,7 @@ export default function Landing() {
                       <br/>
                       <p><span className="text-purple-400">const</span> <span className="text-blue-400">supportAgent</span> = <span className="text-purple-400">new</span> <span className="text-yellow-200">Agent</span>({`{`}</p>
                       <p className="pl-4"><span className="text-white/50">name:</span> <span className="text-emerald-400">'Customer Support'</span>,</p>
-                      <p className="pl-4"><span className="text-white/50">model:</span> <span className="text-emerald-400">'gemini-1.5-pro'</span>,</p>
+                      <p className="pl-4"><span className="text-white/50">model:</span> <span className="text-emerald-400">'gemini-3.5-pro'</span>,</p>
                       <p className="pl-4"><span className="text-white/50">tools:</span> [zendesk, confluence],</p>
                       <p className="pl-4"><span className="text-white/50">instructions:</span> <span className="text-emerald-400">'Resolve tier 1 tickets automatically.'</span></p>
                       <p>{`});`}</p>

@@ -11,11 +11,6 @@ export default async function Page() {
     headers: await headers()
   })
 
-  // If user is already authenticated, redirect to /dashboard
-  if (session) {
-    redirect("/dashboard")
-  }
-
   // Otherwise render a premium landing page
   return (
     <div className="relative min-h-screen text-foreground flex flex-col justify-between overflow-x-hidden">

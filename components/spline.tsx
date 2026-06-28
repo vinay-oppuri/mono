@@ -1,7 +1,47 @@
 "use client";
 
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import { MeshDistortMaterial, Float, Sphere } from "@react-three/drei";
+
+function Scene() {
+    const { viewport } = useThree();
+    const isMobile = viewport.width < 3.5;
+    const scale = isMobile ? 0.6 : 1;
+
+    return (
+        <>
+            <ambientLight intensity={0.2} />
+            <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={2} />
+            <pointLight position={[-10, -10, -10]} intensity={2} color="#ffffff" />
+
+            <Float speed={1.5} rotationIntensity={1.5} floatIntensity={1.5}>
+                <group scale={scale}>
+                    {/* Inner Solid Black Blob */}
+                    <Sphere args={[1.4, 64, 64]}>
+                        <MeshDistortMaterial
+                            color="#000000"
+                            distort={0.3}
+                            speed={1.5}
+                            roughness={0.1}
+                            metalness={1}
+                        />
+                    </Sphere>
+                    {/* Outer Wireframe Glow */}
+                    <Sphere args={[1.45, 32, 32]}>
+                        <MeshDistortMaterial
+                            color="#ffffff"
+                            wireframe={true}
+                            transparent={true}
+                            opacity={0.1}
+                            distort={0.4}
+                            speed={2}
+                        />
+                    </Sphere>
+                </group>
+            </Float>
+        </>
+    );
+}
 
 export default function SplineScene() {
     return (
@@ -9,33 +49,7 @@ export default function SplineScene() {
             {/* 3D Background */}
             <div className="absolute inset-0 z-0 pointer-events-none">
                 <Canvas camera={{ position: [0, 0, 5], fov: 45 }} dpr={[1, 1.5]}>
-                    <ambientLight intensity={0.2} />
-                    <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={2} />
-                    <pointLight position={[-10, -10, -10]} intensity={2} color="#ffffff" />
-
-                    <Float speed={1.5} rotationIntensity={1.5} floatIntensity={1.5}>
-                        {/* Inner Solid Black Blob */}
-                        <Sphere args={[1.4, 64, 64]}>
-                            <MeshDistortMaterial
-                                color="#000000"
-                                distort={0.3}
-                                speed={1.5}
-                                roughness={0.1}
-                                metalness={1}
-                            />
-                        </Sphere>
-                        {/* Outer Wireframe Glow */}
-                        <Sphere args={[1.45, 32, 32]}>
-                            <MeshDistortMaterial
-                                color="#ffffff"
-                                wireframe={true}
-                                transparent={true}
-                                opacity={0.1}
-                                distort={0.4}
-                                speed={2}
-                            />
-                        </Sphere>
-                    </Float>
+                    <Scene />
                 </Canvas>
             </div>
 
