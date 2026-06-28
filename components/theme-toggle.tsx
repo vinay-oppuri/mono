@@ -17,7 +17,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => onChange()}
-      className="rounded-full"
+      className="rounded-full text-white"
       aria-label="Light Mode"
     >
       {resolvedTheme == "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}

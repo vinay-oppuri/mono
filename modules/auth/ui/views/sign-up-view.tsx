@@ -82,7 +82,7 @@ export const SignUpView = () => {
 
     return (
         <div className="relative flex flex-col gap-6 select-none">
-            <Card className="relative overflow-hidden border border-white/[0.08] bg-[#14171f]/50 backdrop-blur-xl p-0 shadow-2xl shadow-black/50 z-10 rounded-2xl">
+            <Card className="relative overflow-hidden border-2 border-white/5 bg-[#14171f]/20 backdrop-blur-xl p-0 shadow-2xl shadow-black/50 z-10 rounded-2xl">
                 <CardContent className="grid grid-cols-1 md:grid-cols-2 p-0">
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 p-6 md:p-9">
@@ -93,7 +93,7 @@ export const SignUpView = () => {
                                         alt="Logo"
                                         width={24}
                                         height={24}
-                                        className="dark:invert shrink-0"
+                                        className="invert shrink-0"
                                     />
                                     <span className="text-white font-bold text-sm tracking-tight">Mono</span>
                                 </Link>
@@ -113,7 +113,7 @@ export const SignUpView = () => {
                                                     type="text" 
                                                     placeholder="Elon Musk" 
                                                     {...field} 
-                                                    className="bg-white/[0.02] border-white/[0.08] hover:border-white/[0.12] focus:border-[#8b5cf6]/60 rounded-lg text-white h-9 text-xs" 
+                                                    className="bg-white/2! border-2! border-white/5! hover:border-white/10! focus:border-primary/80! rounded-lg text-white" 
                                                 />
                                             </FormControl>
                                             <FormMessage />
@@ -132,7 +132,7 @@ export const SignUpView = () => {
                                                     type="email" 
                                                     placeholder="elon@example.com" 
                                                     {...field} 
-                                                    className="bg-white/[0.02] border-white/[0.08] hover:border-white/[0.12] focus:border-[#8b5cf6]/60 rounded-lg text-white h-9 text-xs" 
+                                                    className="bg-white/2! border-2! border-white/5! hover:border-white/10! focus:border-primary/80! rounded-lg text-white" 
                                                 />
                                             </FormControl>
                                             <FormMessage />
@@ -151,7 +151,7 @@ export const SignUpView = () => {
                                                     type="password" 
                                                     placeholder="••••••••" 
                                                     {...field} 
-                                                    className="bg-white/[0.02] border-white/[0.08] hover:border-white/[0.12] focus:border-[#8b5cf6]/60 rounded-lg text-white h-9 text-xs" 
+                                                    className="bg-white/2! border-2! border-white/5! hover:border-white/10! focus:border-primary/80! rounded-lg text-white" 
                                                 />
                                             </FormControl>
                                             <FormMessage />
@@ -170,7 +170,7 @@ export const SignUpView = () => {
                                                     type="password" 
                                                     placeholder="••••••••" 
                                                     {...field} 
-                                                    className="bg-white/[0.02] border-white/[0.08] hover:border-white/[0.12] focus:border-[#8b5cf6]/60 rounded-lg text-white h-9 text-xs" 
+                                                    className="bg-white/2! border-2! border-white/5! hover:border-white/10! focus:border-primary/80! rounded-lg text-white" 
                                                 />
                                             </FormControl>
                                             <FormMessage />
@@ -189,16 +189,16 @@ export const SignUpView = () => {
                             <Button 
                                 disabled={pending} 
                                 type="submit" 
-                                className="w-full h-10 rounded-xl bg-[#8b5cf6] hover:bg-[#7c3aed] text-white transition-all font-semibold cursor-pointer shadow-lg shadow-[#8b5cf6]/20 border-none text-xs"
+                                className="w-full h-10 rounded-xl bg-purple-600 hover:bg-purple-700 text-white transition-all font-semibold cursor-pointer shadow-lg shadow-[#8b5cf6]/20 border-none"
                             >
                                 {pending ? "Creating account..." : "Sign Up"}
                             </Button>
 
-                            <div className="relative text-center text-[10px]">
+                            <div className="relative text-center text-xs">
                                 <div className="absolute inset-0 flex items-center">
-                                    <div className="w-full border-t border-white/[0.06]" />
+                                    <div className="w-full border-t border-white/5" />
                                 </div>
-                                <span className="relative z-10 bg-[#161921] px-2 text-[#8892b0]/60 uppercase font-bold tracking-wider">OR</span>
+                                <span className="relative z-10 bg-transparent px-2 text-[#8892b0]/60 uppercase font-bold tracking-wider">OR</span>
                             </div>
 
                             <div className="grid grid-cols-2 gap-3">
@@ -206,21 +206,21 @@ export const SignUpView = () => {
                                     disabled={pending}
                                     variant="outline"
                                     type="button"
-                                    className="w-full h-9 flex items-center justify-center gap-2 rounded-xl bg-white/[0.02] border-white/[0.08] hover:bg-white/[0.05] text-[#8892b0] hover:text-white transition-colors cursor-pointer text-xs"
+                                    className="w-full h-10 flex items-center justify-center gap-2 rounded-xl bg-white/2 border-white/5 hover:bg-white/5 text-[#8892b0] hover:text-white transition-colors cursor-pointer"
                                     onClick={() => onSocial('google')}
                                 >
                                     <FaGoogle className="text-sm shrink-0" />
-                                    <span className="font-semibold">Google</span>
+                                    <span className="text-xs font-semibold">Google</span>
                                 </Button>
                                 <Button
                                     disabled={pending}
                                     variant="outline"
                                     type="button"
-                                    className="w-full h-9 flex items-center justify-center gap-2 rounded-xl bg-white/[0.02] border-white/[0.08] hover:bg-white/[0.05] text-[#8892b0] hover:text-white transition-colors cursor-pointer text-xs"
+                                    className="w-full h-10 flex items-center justify-center gap-2 rounded-xl bg-white/2 border-white/5 hover:bg-white/5 text-[#8892b0] hover:text-white transition-colors cursor-pointer"
                                     onClick={() => onSocial('github')}
                                 >
                                     <FaGithub className="text-sm shrink-0" />
-                                    <span className="font-semibold">GitHub</span>
+                                    <span className="text-xs font-semibold">GitHub</span>
                                 </Button>
                             </div>
 
@@ -234,20 +234,20 @@ export const SignUpView = () => {
                     </Form>
 
                     {/* Branding Side Panel */}
-                    <div className="relative hidden md:flex flex-col justify-between border-l border-white/[0.08] bg-[#12151d] p-9 overflow-hidden">
+                    <div className="relative hidden md:flex flex-col justify-between border-l-2 border-white/5 bg-white/2 p-9 overflow-hidden">
                         <Link href="/" className="flex items-center gap-2.5 z-10 hover:opacity-80 transition-opacity w-fit cursor-pointer">
                             <Image
                                 src="/logo.svg"
                                 alt="Logo"
                                 width={28}
                                 height={28}
-                                className="dark:invert shrink-0"
+                                className="invert shrink-0"
                             />
                             <span className="text-white font-bold text-base tracking-tight">Mono</span>
                         </Link>
                         
                         <div className="space-y-4 z-10">
-                            <div className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.06] bg-white/[0.02] px-3 py-1 text-[10px] text-[#8892b0] shadow-inner w-fit">
+                            <div className="inline-flex items-center gap-1.5 rounded-full border border-white/5 bg-white/2 px-3 py-1 text-[10px] text-[#8892b0] shadow-inner w-fit">
                                 <Sparkles className="size-3 text-white/70 animate-pulse" />
                                 <span>Re-usable AI Agent Workspace</span>
                             </div>
@@ -262,10 +262,12 @@ export const SignUpView = () => {
                 </CardContent>
             </Card>
 
-            <div className="text-muted-foreground text-center text-xs text-balance *:[a]:underline *:[a]:hover:text-primary">
-                By clicking continue, you agree to our{" "}
-                <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-            </div>
+            <p className="text-center text-[10px] text-[#8892b0]/40 tracking-wide select-none">
+                By signing up, you agree to our{' '}
+                <a href="#" className="underline hover:text-white transition-colors">Terms of Service</a>{' '}
+                and{' '}
+                <a href="#" className="underline hover:text-white transition-colors">Privacy Policy</a>.
+            </p>
         </div>
     )
 }
