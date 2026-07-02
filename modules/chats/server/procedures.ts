@@ -32,8 +32,19 @@ export const chatsRouter = createTRPCRouter({
             }
 
             const messages = await db
-                .select()
+                .select({
+                    id: chatMessages.id,
+                    chatId: chatMessages.chatId,
+                    role: chatMessages.role,
+                    content: chatMessages.content,
+                    agentId: chatMessages.agentId,
+                    createdAt: chatMessages.createdAt,
+                    agent: {
+                        name: agents.name,
+                    }
+                })
                 .from(chatMessages)
+                .leftJoin(agents, eq(chatMessages.agentId, agents.id))
                 .where(eq(chatMessages.chatId, existingChat.id))
                 .orderBy(chatMessages.createdAt, chatMessages.id)
 
@@ -189,6 +200,28 @@ export const chatsRouter = createTRPCRouter({
                 throw new TRPCError({ code: "NOT_FOUND", message: "Chat not found" })
             }
 
+            const activeAgentId = input.agentId !== undefined ? input.agentId : existingChat.agentId
+            let activeAgent = existingChat.agent
+
+            if (input.agentId && input.agentId !== existingChat.agentId) {
+                const [customAgent] = await db
+                    .select()
+                    .from(agents)
+                    .where(
+                        and(
+                            eq(agents.id, input.agentId),
+                            eq(agents.userId, ctx.auth.user.id)
+                        )
+                    )
+                if (customAgent) {
+                    activeAgent = customAgent
+                } else {
+                    activeAgent = null
+                }
+            } else if (input.agentId === null) {
+                activeAgent = null
+            }
+
             const [userMessage] = await db
                 .insert(chatMessages)
                 .values({
@@ -207,8 +240,8 @@ export const chatsRouter = createTRPCRouter({
             let reply: string
 
             try {
-                const agentName = existingChat.agent?.name || "Assistant"
-                const agentInstructions = existingChat.agent?.instructions || "You are a helpful and intelligent AI assistant. Respond comprehensively and directly to the user's queries."
+                const agentName = activeAgent?.name || "Assistant"
+                const agentInstructions = activeAgent?.instructions || "You are a helpful and intelligent AI assistant. Respond comprehensively and directly to the user's queries."
 
                 reply = await generateAgentReply({
                     agentName: agentName,
@@ -240,7 +273,8 @@ export const chatsRouter = createTRPCRouter({
                 .values({
                     chatId: input.chatId,
                     role: "assistant",
-                    content: reply
+                    content: reply,
+                    agentId: activeAgentId
                 })
                 .returning()
 

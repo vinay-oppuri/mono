@@ -5,6 +5,12 @@ import { ArrowUp } from "lucide-react"
 import { Textarea } from "@/components/ui/textarea"
 import { GeneratedAvatar } from "@/components/generated-avatar"
 import { cn } from "@/lib/utils"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 interface ChatInputProps {
   value: string
@@ -15,6 +21,8 @@ interface ChatInputProps {
   isPending?: boolean
   selectedAgent?: { name: string } | null
   onDeselectAgent?: () => void
+  agentsList?: { id: string; name: string }[]
+  onSelectAgent?: (agent: { id: string; name: string } | null) => void
   className?: string
   maxHeight?: number
 }
@@ -28,6 +36,8 @@ export function ChatInput({
   isPending = false,
   selectedAgent = null,
   onDeselectAgent,
+  agentsList = [],
+  onSelectAgent,
   className,
   maxHeight = 200,
 }: ChatInputProps) {
@@ -65,7 +75,7 @@ export function ChatInput({
     <div
       className={cn(
         "w-full relative border border-border backdrop-blur-md shadow-lg shadow-black/10 transition-all duration-200 focus-within:border-white/[0.15] focus-within:shadow-[0_0_0_1px_rgba(139,92,246,0.2)] bg-card/80",
-        (selectedAgent || isMultiline) ? "rounded-2xl" : "rounded-full",
+        (selectedAgent || onSelectAgent || isMultiline) ? "rounded-2xl" : "rounded-full",
         className
       )}
     >
@@ -80,15 +90,44 @@ export function ChatInput({
         disabled={disabled || isPending}
         className={cn(
           "ml-2 w-full resize-none border-none! bg-transparent! px-5! py-4! placeholder:text-muted-foreground! focus:outline-none! focus-visible:ring-transparent! text-xs md:text-sm leading-relaxed text-foreground!",
-          selectedAgent ? "pb-2! pr-5!" : "pr-14! min-h-[56px]!"
+          (selectedAgent || onSelectAgent) ? "pb-2! pr-5!" : "pr-14! min-h-[56px]!"
         )}
       />
 
-      {/* Bottom toolbar or absolute button based on selectedAgent */}
-      {selectedAgent ? (
+      {/* Bottom toolbar or absolute button based on selectedAgent or onSelectAgent */}
+      {(selectedAgent || onSelectAgent) ? (
         <div className="flex items-center justify-between px-3.5 pb-3">
-          {/* Left: Selected agent preview */}
-          {onDeselectAgent ? (
+          {/* Left: Selected agent preview or selector dropdown */}
+          {onSelectAgent ? (
+            <DropdownMenu modal={false}>
+              <DropdownMenuTrigger asChild>
+                <button
+                  type="button"
+                  className="flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs font-semibold transition-all duration-150 border bg-ring/10 border-ring/25 text-ring hover:bg-ring/25 select-none cursor-pointer"
+                >
+                  <GeneratedAvatar seed={selectedAgent?.name || "Gemini"} variant="botttsNeutral" className="size-4" />
+                  <span className="max-w-[120px] truncate">{selectedAgent?.name || "Gemini Assistant"}</span>
+                  <span className="text-[10px] opacity-60 ml-0.5">▼</span>
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-[200px] bg-card border border-border backdrop-blur-lg">
+                <DropdownMenuItem onClick={() => onSelectAgent(null)} className="cursor-pointer">
+                  <div className="flex items-center gap-2">
+                    <GeneratedAvatar seed="Gemini" variant="botttsNeutral" className="size-4" />
+                    <span>Gemini Assistant (Default)</span>
+                  </div>
+                </DropdownMenuItem>
+                {agentsList.map((agent) => (
+                  <DropdownMenuItem key={agent.id} onClick={() => onSelectAgent(agent)} className="cursor-pointer">
+                    <div className="flex items-center gap-2">
+                      <GeneratedAvatar seed={agent.name} variant="botttsNeutral" className="size-4" />
+                      <span>{agent.name}</span>
+                    </div>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : onDeselectAgent && selectedAgent ? (
             <button
               type="button"
               onClick={onDeselectAgent}
@@ -98,12 +137,12 @@ export function ChatInput({
               <span className="max-w-[120px] truncate">{selectedAgent.name}</span>
               <span className="text-[10px] opacity-60 ml-1">x</span>
             </button>
-          ) : (
+          ) : selectedAgent ? (
             <div className="flex items-center gap-2 rounded-lg bg-muted/50 border border-border px-2.5 py-1 text-[11px] text-muted-foreground select-none">
               <GeneratedAvatar seed={selectedAgent.name} variant="botttsNeutral" className="size-3.5" />
               <span className="font-semibold text-foreground/80">{selectedAgent.name}</span>
             </div>
-          )}
+          ) : null}
 
           {/* Right: Send button with professional accent */}
           <button

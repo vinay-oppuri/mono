@@ -5,23 +5,15 @@ import {
     BreadcrumbList,
     BreadcrumbSeparator
 } from "@/components/ui/breadcrumb"
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu"
-import { ChevronRightIcon, MoreVerticalIcon, PencilIcon, TrashIcon } from "lucide-react"
+import { ChevronRightIcon } from "lucide-react"
 import Link from "next/link"
 
 interface Props {
     chatId: string
     chatTitle: string
-    onEdit: () => void
-    onRemove: () => void
 }
 
-export const ChatIdViewHeader = ({ chatId, chatTitle, onEdit, onRemove }: Props) => {
+export const ChatIdViewHeader = ({ chatId, chatTitle }: Props) => {
     return (
         <div className="flex items-center justify-between py-4">
             <Breadcrumb>
@@ -41,19 +33,6 @@ export const ChatIdViewHeader = ({ chatId, chatTitle, onEdit, onRemove }: Props)
                     </BreadcrumbItem>
                 </BreadcrumbList>
             </Breadcrumb>
-            <DropdownMenu modal={false}>
-                <DropdownMenuTrigger>
-                    <MoreVerticalIcon className="size-5 text-muted-foreground" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                    <DropdownMenuItem onClick={onEdit}>
-                        <PencilIcon className="size-4 text-foreground" /> Edit
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={onRemove}>
-                        <TrashIcon className="size-4 text-foreground" /> Delete
-                    </DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
         </div>
     )
 }

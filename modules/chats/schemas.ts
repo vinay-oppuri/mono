@@ -11,5 +11,6 @@ export const chatsUpdateSchema = chatsInsertSchema.extend({
 
 export const sendMessageSchema = z.object({
     chatId: z.string().min(1, "Chat is required"),
-    content: z.string().min(1, "Message is required")
+    content: z.string().min(1, "Message is required"),
+    agentId: z.string().nullish()
 })
